@@ -64,6 +64,7 @@
 ;; EVIL PART
 ;;;;;;;;;;;;
 
+(require 'evil)
 (evil-mode 1)
 
 (setq evil-emacs-state-cursor '("red" box))
