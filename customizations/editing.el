@@ -13,9 +13,7 @@
         try-complete-lisp-symbol))
 
 ;; Highlights matching parenthesis
-(show-paren-mode 1)
-
-;; Highlight current line
+(show-paren-mode 1) ;; Highlight current line
 (global-hl-line-mode 1)
 
 ;; Interactive search key bindings. By default, C-s runs
@@ -49,7 +47,7 @@
   "comment or uncomment current line"
   (interactive)
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
-(global-set-key (kbd "C-;") 'toggle-comment-on-line)
+(global-set-key (kbd "s-/") 'toggle-comment-on-line)
 
 ;; yay rainbows!
 ; (global-rainbow-delimiters-mode t)
@@ -70,3 +68,25 @@
     (quit nil)))
 
 (setq electric-indent-mode nil)
+
+
+;;;;;;;;;;;;
+;; EVIL PART
+;;;;;;;;;;;;
+
+(evil-mode 1)
+
+(setq evil-emacs-state-cursor '("red" box))
+(setq evil-normal-state-cursor '("green" box))
+(setq evil-visual-state-cursor '("orange" box))
+(setq evil-insert-state-cursor '("red" bar))
+(setq evil-replace-state-cursor '("red" bar))
+(setq evil-operator-state-cursor '("red" hollow))
+
+(setq evil-move-cursor-back nil)
+
+;;Exit insert mode by pressing i and then i quickly
+(setq key-chord-two-keys-delay 0.5)
+(key-chord-define evil-insert-state-map "ii" 'evil-normal-state)
+(key-chord-mode 1)
+

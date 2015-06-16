@@ -30,7 +30,13 @@
 (load-theme 'monokai t)
 
 ;; increase font size for better readability
-(set-face-attribute 'default nil :height 140)
+;; (set-face-attribute 'default nil :height 140)
+;; (set-face-attribute 'default t :font FONT )
+(set-default-font (font-spec 
+                  :family "Menlo Regular" 
+                  ;; :antialias nil
+                  ;; :otf '(latn nil (liga))
+                  :size 12))
 
 ;; Uncomment the lines below by removing semicolons and play with the
 ;; values in order to set the width (in characters wide) and height
