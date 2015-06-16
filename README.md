@@ -4,6 +4,7 @@ Currently just my emacs.d, largely based on https://github.com/flyingmachine/ema
 # TODO
 - Smooth scrolling
 - Emacs daemon always running
+- Markdown mode
 
 # References
 - https://bbbscarter.wordpress.com/2012/09/13/emacs-bits-and-bobs
