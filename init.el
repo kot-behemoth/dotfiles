@@ -70,6 +70,8 @@
     
     ;; used to remap escape from insert mode to "ii"
     key-chord
+    
+    ace-jump-mode
 
     ;; git integration
     ; magit
@@ -131,8 +133,6 @@
 
 ;; Hard-to-categorize customizations
 (load "misc.el")
-
-(load "evil.el")
 
 ;; For editing lisps
 ; (load "elisp-editing.el")

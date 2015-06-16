@@ -59,3 +59,31 @@
 
 ;; projectile everywhere!
 ; (projectile-global-mode)
+
+;;;;;;;;;;;;
+;; EVIL PART
+;;;;;;;;;;;;
+
+(evil-mode 1)
+
+(setq evil-emacs-state-cursor '("red" box))
+(setq evil-normal-state-cursor '("green" box))
+(setq evil-visual-state-cursor '("orange" box))
+(setq evil-insert-state-cursor '("red" bar))
+(setq evil-replace-state-cursor '("red" bar))
+(setq evil-operator-state-cursor '("red" hollow))
+
+(setq evil-move-cursor-back nil)
+
+;;Exit insert mode by pressing i and then i quickly
+(setq key-chord-two-keys-delay 0.5)
+(key-chord-define evil-insert-state-map "ii" 'evil-normal-state)
+(key-chord-mode 1)
+
+
+;;Ace jump stuff. Honestly, I just use Space 99% of the time
+;; from https://bbbscarter.wordpress.com/2012/09/13/emacs-bits-and-bobs/
+(define-key evil-normal-state-map (kbd "C-SPC") 'ace-jump-char-mode)
+
+;;Personally I like ace-jump to be limited to the window I’m working in
+(setq ace-jump-mode-scope 'window)
