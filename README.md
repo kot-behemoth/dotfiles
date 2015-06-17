@@ -2,6 +2,8 @@
 Currently just my emacs.d, largely based on https://github.com/flyingmachine/emacs-for-clojure
 
 # TODO
+- vim-like open splits navigation
+- vim leader key
 - Smooth scrolling
 - Emacs daemon always running
 - Markdown mode
