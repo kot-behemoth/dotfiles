@@ -30,11 +30,13 @@
 (load-theme 'monokai t)
 
 ;; increase font size for better readability
-;; (set-face-attribute 'default nil :height 140)
+;; (set-face-attribute 'default nil :height 100)
 ;; (set-face-attribute 'default t :font FONT )
+
+;;set font attributes
 (set-default-font (font-spec 
-                  :family "Menlo Regular" 
-                  ;; :antialias nil
+                  :family "Essential PragmataPro" 
+                  :antialias nil
                   ;; :otf '(latn nil (liga))
                   :size 12))
 
