@@ -74,6 +74,11 @@
 (setq evil-replace-state-cursor '("red" bar))
 (setq evil-operator-state-cursor '("red" hollow))
 
+(define-key evil-motion-state-map (kbd "C-h") 'evil-window-left)
+(define-key evil-motion-state-map (kbd "C-j") 'evil-window-down)
+(define-key evil-motion-state-map (kbd "C-k") 'evil-window-up)
+(define-key evil-motion-state-map (kbd "C-l") 'evil-window-right)
+
 (setq evil-move-cursor-back nil)
 
 ;;Exit insert mode by pressing i and then i quickly
