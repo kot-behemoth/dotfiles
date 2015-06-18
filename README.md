@@ -2,11 +2,18 @@
 Currently just my emacs.d, largely based on https://github.com/flyingmachine/emacs-for-clojure
 
 # TODO
-- vim-like open splits navigation
-- vim leader key
-- Smooth scrolling
-- Emacs daemon always running
-- Markdown mode
+- [x] vim-like open splits navigation
+- [ ] evil-leader key
+- [ ] Smooth scrolling
+- [ ] Emacs daemon always running
+- [ ] Markdown mode
+- [ ] NeoTree with evil
+
+# Things to get done to replace PyCharm
+- [ ] Projectile
+- [ ] evil-jedi
+- [ ] rename across the project
+- [ ] find string as regex within the project, filter by certain file type
 
 # References
 - https://bbbscarter.wordpress.com/2012/09/13/emacs-bits-and-bobs
