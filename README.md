@@ -14,6 +14,7 @@ Currently just my emacs.d, largely based on https://github.com/flyingmachine/ema
 - [ ] evil-jedi
 - [ ] rename across the project
 - [ ] find string as regex within the project, filter by certain file type
+- [ ] auto collapse on function/class level
 
 # References
 - https://bbbscarter.wordpress.com/2012/09/13/emacs-bits-and-bobs
