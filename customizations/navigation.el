@@ -78,6 +78,8 @@
 (define-key evil-motion-state-map (kbd "C-j") 'evil-window-down)
 (define-key evil-motion-state-map (kbd "C-k") 'evil-window-up)
 (define-key evil-motion-state-map (kbd "C-l") 'evil-window-right)
+(define-key evil-normal-state-map (kbd "C-SPC") 'evil-ace-jump-char-mode)
+(define-key evil-normal-state-map (kbd "C-b") 'ibuffer)
 
 (setq evil-move-cursor-back nil)
 
@@ -86,10 +88,23 @@
 (key-chord-define evil-insert-state-map "ii" 'evil-normal-state)
 (key-chord-mode 1)
 
+(eval-after-load 'ibuffer
+  '(progn
+     (evil-set-initial-state 'ibuffer-mode 'normal)
+     (evil-define-key 'normal ibuffer-mode-map
+       (kbd "m") 'ibuffer-mark-forward
+       (kbd "t") 'ibuffer-toggle-marks
+       (kbd "u") 'ibuffer-unmark-forward
+       (kbd "=") 'ibuffer-diff-with-file
 
-;;Ace jump stuff. Honestly, I just use Space 99% of the time
-;; from https://bbbscarter.wordpress.com/2012/09/13/emacs-bits-and-bobs/
-(define-key evil-normal-state-map (kbd "C-SPC") 'ace-jump-char-mode)
+       ;; custom stuff
+       (kbd "j") 'evil-next-line
+       (kbd "k") 'evil-previous-line
+       (kbd "o") 'ibuffer-visit-buffer
+       ;; ...
+       )
+     )
+   )
 
-;;Personally I like ace-jump to be limited to the window I’m working in
+;; Personally I like ace-jump to be limited to the window I’m working in
 (setq ace-jump-mode-scope 'window)
