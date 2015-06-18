@@ -8,6 +8,7 @@ Currently just my emacs.d, largely based on https://github.com/flyingmachine/ema
 - [ ] Emacs daemon always running
 - [ ] Markdown mode
 - [ ] NeoTree with evil
+- [ ] why does ibuffer accept "d", but then requires "x" to apply?
 
 # Things to get done to replace PyCharm
 - [ ] Projectile
