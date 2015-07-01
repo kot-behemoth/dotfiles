@@ -69,3 +69,13 @@
 
 (setq electric-indent-mode nil)
 
+
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+;; Hash key fix
+(fset 'insertPound "#")
+(global-set-key (kbd "M-3") 'insertPound)

@@ -71,6 +71,8 @@
     ;; used to remap escape from insert mode to "ii"
     key-chord
     
+    markdown-mode
+    
     ;; git integration
     ; magit
     )
