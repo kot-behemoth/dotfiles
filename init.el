@@ -65,13 +65,18 @@
     ;; edit html tags like sexps
     tagedit
 
+    ;; multiple-cursors
+
     ;; vim goodness
     evil
+    evil-leader
     
     ;; used to remap escape from insert mode to "ii"
     key-chord
     
     markdown-mode
+    
+    json-mode
     
     ;; git integration
     ; magit
@@ -106,6 +111,9 @@
 ;; Adding this code will make Emacs enter yaml mode whenever you open
 ;; a .yml file
 (add-to-list 'load-path "~/.emacs.d/vendor")
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 
 ;;;;

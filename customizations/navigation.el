@@ -64,7 +64,18 @@
 ;; EVIL PART
 ;;;;;;;;;;;;
 
-(require 'evil)
+;; Evil leader
+;; Note: You should enable global-evil-leader-mode before you enable
+;; evil-mode, otherwise evil-leader won’t be enabled in initial buffers
+;; (*scratch*, *Messages*, …).
+(global-evil-leader-mode)
+(evil-leader/set-leader ",")
+(evil-leader/set-key
+  "f" 'find-file
+  "b" 'ibuffer
+  "," 'evil-ace-jump-char-mode
+)
+
 (evil-mode 1)
 
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
@@ -91,6 +102,7 @@
 (key-chord-define evil-insert-state-map "ii" 'evil-normal-state)
 (key-chord-mode 1)
 
+;; Evil IBuffer patches
 (eval-after-load 'ibuffer
   '(progn
      (evil-set-initial-state 'ibuffer-mode 'normal)
@@ -111,3 +123,4 @@
 
 ;; Personally I like ace-jump to be limited to the window I’m working in
 (setq ace-jump-mode-scope 'window)
+
