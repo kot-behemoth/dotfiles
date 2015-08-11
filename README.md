@@ -3,18 +3,17 @@ Currently just my emacs.d, largely based on https://github.com/flyingmachine/ema
 
 # TODO
 - [x] vim-like open splits navigation
-- [ ] evil-leader key
-- [ ] Smooth scrolling
+- [x] evil-leader key
+- [x] Smooth scrolling
+- [x] Markdown mode
 - [ ] Emacs daemon always running
-- [ ] Markdown mode
 - [ ] NeoTree with evil
-- [x] why does ibuffer accept "d", but then requires "x" to apply?
 
 # Things to get done to replace PyCharm
+- [x] find string as regex within the project, filter by certain file type (rgrep-mode, duh)
 - [ ] Projectile
 - [ ] evil-jedi
 - [ ] rename across the project
-- [ ] find string as regex within the project, filter by certain file type
 - [ ] auto collapse on function/class level
 
 # References
