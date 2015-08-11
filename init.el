@@ -77,6 +77,8 @@
     markdown-mode
     
     json-mode
+
+    yaml-mode
     
     ;; git integration
     ; magit
