@@ -73,7 +73,10 @@
 (evil-leader/set-key
   "f" 'find-file
   "b" 'ibuffer
+  "g" 'switch-to-buffer
   "," 'evil-ace-jump-char-mode
+  "h h" `undo-tree-visualize
+  "h d" `undo-tree-visualizer-toggle-diff
 )
 
 (evil-mode 1)
