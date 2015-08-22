@@ -8,6 +8,7 @@ Currently just my emacs.d, largely based on https://github.com/flyingmachine/ema
 - [x] Markdown mode
 - [ ] Emacs daemon always running
 - [ ] NeoTree with evil
+- [ ] Add mmm-mode support (http://jblevins.org/log/mmm)
 
 # Things to get done to replace PyCharm
 - [x] find string as regex within the project, filter by certain file type (rgrep-mode, duh)
