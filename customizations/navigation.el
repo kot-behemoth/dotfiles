@@ -75,6 +75,7 @@
   "b" 'ibuffer
   "g" 'switch-to-buffer
   "," 'evil-ace-jump-char-mode
+  "t" 'neotree-toggle
   "h h" `undo-tree-visualize
   "h d" `undo-tree-visualizer-toggle-diff
 )
@@ -126,6 +127,14 @@
 
 ;; Personally I like ace-jump to be limited to the window I’m working in
 (setq ace-jump-mode-scope 'window)
+
+;; Evil neotree
+(add-hook 'neotree-mode-hook
+    (lambda ()
+        (define-key evil-normal-state-local-map (kbd "o") 'neotree-enter)
+        (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
+    )
+)
 
 
 ;; Smooth scrolling

@@ -6,8 +6,7 @@ Currently just my emacs.d, largely based on https://github.com/flyingmachine/ema
 - [x] evil-leader key
 - [x] Smooth scrolling
 - [x] Markdown mode
-- [ ] Emacs daemon always running
-- [ ] NeoTree with evil
+- [x] NeoTree with evil
 - [ ] Add mmm-mode support (http://jblevins.org/log/mmm)
 
 # Things to get done to replace PyCharm
