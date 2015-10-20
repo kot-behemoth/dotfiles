@@ -45,9 +45,12 @@ values."
    '(
      evil-escape
      yaml-mode
-    )
+     )
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages
+   '(
+     window-numbering
+     )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -187,23 +190,35 @@ values."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("ag" "pt" "ack" "grep")
+   dotspacemacs-search-tools '("ag" "pt" "ack" "grep") 
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now. (default nil)
    dotspacemacs-default-package-repository nil
    ))
 
+(defun dotspacemacs/config ()
+  "Configuration function.
+ This function is called at the very end of Spacemacs initialization after
+layers configuration."
+
+  )
+
 (defun dotspacemacs/user-init ()
   "Initialization function for user code.
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
+
+  ;(global-linum-mode) ; Show line numbers by default
+  ;; Actually allow typing #
+  (global-set-key (kbd "M-3") `(lambda () (interactive) (insert "#")))
   )
 
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
+
   (setq powerline-default-separator 'nil)
   (setq-default evil-escape-key-sequence "ii")
   (setq-default evil-escape-delay 0.3)
