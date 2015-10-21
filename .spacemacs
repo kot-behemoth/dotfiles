@@ -223,6 +223,9 @@ layers configuration. You are free to put any user code."
   (setq powerline-default-separator 'nil)
   (setq-default evil-escape-key-sequence "ii")
   (setq-default evil-escape-delay 0.3)
+
+  (global-set-key (kbd "C-k") `evil-scroll-page-up)
+  (global-set-key (kbd "C-j") `evil-scroll-page-down)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
