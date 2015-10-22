@@ -46,6 +46,7 @@ values."
      evil-escape
      yaml-mode
      json-mode
+     writeroom-mode
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
@@ -191,7 +192,7 @@ values."
    ;; List of search tool executable names. Spacemacs uses the first installed
    ;; tool of the list. Supported tools are `ag', `pt', `ack' and `grep'.
    ;; (default '("ag" "pt" "ack" "grep"))
-   dotspacemacs-search-tools '("ag" "pt" "ack" "grep") 
+   dotspacemacs-search-tools '("ag" "grep") 
    ;; The default package repository used if no explicit repository has been
    ;; specified with an installed package.
    ;; Not used for now. (default nil)
@@ -226,6 +227,9 @@ layers configuration. You are free to put any user code."
 
   (global-set-key (kbd "C-k") `evil-scroll-page-up)
   (global-set-key (kbd "C-j") `evil-scroll-page-down)
+
+  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
