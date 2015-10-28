@@ -23,7 +23,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
+     auto-completion
      better-defaults
      emacs-lisp
      python
@@ -253,6 +253,13 @@ layers configuration. You are free to put any user code."
   (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
   (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 
+  (eval-after-load "company"
+    '(progn
+       (add-to-list 'company-backends 'company-anaconda)))
+
+  ;; fix file drag-n-drop behaviour
+  (global-set-key [ns-drag-file] 'ns-find-file)
+  (setq ns-pop-up-frames nil) 
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
