@@ -49,6 +49,7 @@ values."
      json-mode
      writeroom-mode
      web-mode
+     scss-mode
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
@@ -102,7 +103,7 @@ values."
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
    dotspacemacs-default-font '("Essential PragmataPro"
-                               :size 12
+                               :size 13
                                :antialias nil
                                :weight normal
                                :width normal
@@ -241,25 +242,21 @@ layers configuration. You are free to put any user code."
   (setq evil-replace-state-cursor '("red" bar))
   (setq evil-operator-state-cursor '("red" hollow))
 
-  (add-hook 'neotree-mode-hook
-            (lambda ()
-              (define-key evil-normal-state-local-map (kbd "o") 'neotree-enter)
-              (define-key evil-normal-state-local-map (kbd "q") 'neotree-hide)
-              )
-            )
-
   ;; scroll one line at a time (less "jumpy" than defaults)
   (setq mouse-wheel-scroll-amount '(2 ((shift) . 1))) ;; two lines at a time
   (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
   (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 
-  (eval-after-load "company"
-    '(progn
-       (add-to-list 'company-backends 'company-anaconda)))
+  ;; (eval-after-load "company"
+  ;;   '(progn
+  ;;      (add-to-list 'company-backends 'company-anaconda)))
 
   ;; fix file drag-n-drop behaviour
   (global-set-key [ns-drag-file] 'ns-find-file)
   (setq ns-pop-up-frames nil) 
+
+  ;; prevent demoting heading also shifting text inside sections
+  (setq org-adapt-indentation nil)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
