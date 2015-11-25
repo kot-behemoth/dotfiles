@@ -18,6 +18,7 @@ chsh -s /bin/zsh
 ## Linking up the files
 
 ```shell
+cd ~
 ln -s dotfiles/.zshrc .zshrc
 ln -s dotfiles/.zpreztorc .zpreztorc
 ln -s dotfiles/.vimrc .vimrc

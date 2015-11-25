@@ -27,9 +27,9 @@ export VISUAL=/usr/bin/vim
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # rbenv stuff
-export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-eval "$(rbenv init -)"
+#export RBENV_ROOT=/usr/local/var/rbenv
+#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+#eval "$(rbenv init -)"
 
 # Zsh custom
 bindkey "^R" history-incremental-search-backward
