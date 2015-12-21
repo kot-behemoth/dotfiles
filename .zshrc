@@ -31,5 +31,11 @@ export PATH="/usr/local/heroku/bin:$PATH"
 #if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 #eval "$(rbenv init -)"
 
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
 # Zsh custom
 bindkey "^R" history-incremental-search-backward
