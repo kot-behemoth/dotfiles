@@ -215,7 +215,6 @@ layers configuration."
 It is called immediately after `dotspacemacs/init'.  You are free to put any
 user code."
 
-  ;(global-linum-mode) ; Show line numbers by default
   ;; Actually allow typing #
   (global-set-key (kbd "M-3") `(lambda () (interactive) (insert "#")))
   )
@@ -247,16 +246,17 @@ layers configuration. You are free to put any user code."
   (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
   (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 
-  ;; (eval-after-load "company"
-  ;;   '(progn
-  ;;      (add-to-list 'company-backends 'company-anaconda)))
-
   ;; fix file drag-n-drop behaviour
   (global-set-key [ns-drag-file] 'ns-find-file)
   (setq ns-pop-up-frames nil) 
 
   ;; prevent demoting heading also shifting text inside sections
   (setq org-adapt-indentation nil)
+
+  (setq backup-directory-alist
+        `((".*" . "~/.emacs_saves")))
+  (setq auto-save-file-name-transforms
+        `((".*" "~/.emacs_saves" t)))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
