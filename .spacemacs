@@ -27,9 +27,11 @@ values."
      better-defaults
      emacs-lisp
      python
-     ;; git
+     git
      markdown
      org
+     sql
+     ansible
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -54,7 +56,6 @@ values."
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
    '(
-     window-numbering
      )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -253,11 +254,64 @@ layers configuration. You are free to put any user code."
   ;; prevent demoting heading also shifting text inside sections
   (setq org-adapt-indentation nil)
 
-  (setq backup-directory-alist
-        `((".*" . "~/.emacs_saves")))
-  (setq auto-save-file-name-transforms
-        `((".*" "~/.emacs_saves" t)))
+  ;; SQL setup
+  (setq sql-connection-alist
+        '((local (sql-product 'postgres)
+                   (sql-server "localhost")
+                   (sql-user "greg")
+                   (sql-database "ts_development"))
+          (staging (sql-product 'postgres)
+                   (sql-server "ec2-52-19-186-164.eu-west-1.compute.amazonaws.com")
+                   (sql-user "archiver")
+                   (sql-database "ts_backup"))
+          (production (sql-product 'postgres)
+                      (sql-server "ec2-52-30-161-39.eu-west-1.compute.amazonaws.com")
+                      (sql-user "archiver")
+                      (sql-database "ts_production"))))
+
+  (defun my-sql-local ()
+    (interactive)
+    (my-sql-connect 'postgres 'local))
+
+  (defun my-sql-staging ()
+    (interactive)
+    (my-sql-connect 'postgres 'staging))
+
+  (defun my-sql-production ()
+    (interactive)
+    (my-sql-connect 'postgres 'production))
+
+  (defun my-sql-connect (product connection)
+    ;; remember to set the sql-product, otherwise, it will fail for the first time
+    ;; you call the function
+    (setq sql-product product)
+    (sql-connect connection))
+
+  (defvar my-sql-servers-list
+    '(("Local" my-sql-local)
+      ("Staging" my-sql-staging)
+      ("Production" my-sql-production))
+    "Alist of server name and the function to connect")
+
+  (defun my-sql-connect-server (func)
+    "Connect to the input server using my-sql-servers-list"
+    (interactive
+     (helm-comp-read "Select server: " my-sql-servers-list))
+    (funcall func))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(magit-pull-arguments nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
+ '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil)))))

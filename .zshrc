@@ -25,6 +25,7 @@ export VISUAL=/usr/bin/vim
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
 
 # rbenv stuff
 #export RBENV_ROOT=/usr/local/var/rbenv
