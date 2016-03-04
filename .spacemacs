@@ -56,6 +56,7 @@ values."
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages
    '(
+     window-numbering
      )
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
@@ -242,6 +243,8 @@ layers configuration. You are free to put any user code."
   (setq evil-replace-state-cursor '("red" bar))
   (setq evil-operator-state-cursor '("red" hollow))
 
+  (global-set-key [(M \3)] "#")
+
   ;; scroll one line at a time (less "jumpy" than defaults)
   (setq mouse-wheel-scroll-amount '(2 ((shift) . 1))) ;; two lines at a time
   (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
@@ -249,7 +252,7 @@ layers configuration. You are free to put any user code."
 
   ;; fix file drag-n-drop behaviour
   (global-set-key [ns-drag-file] 'ns-find-file)
-  (setq ns-pop-up-frames nil) 
+  (setq ns-pop-up-frames nil)
 
   ;; prevent demoting heading also shifting text inside sections
   (setq org-adapt-indentation nil)
