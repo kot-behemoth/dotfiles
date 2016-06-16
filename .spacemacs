@@ -27,6 +27,7 @@ values."
      better-defaults
      emacs-lisp
      python
+     ipython-notebook
      git
      markdown
      org
@@ -39,6 +40,7 @@ values."
      ;; syntax-checking
      ;; version-control
      osx
+     themes-megapack
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -226,7 +228,6 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
 
-  (setq powerline-default-separator 'nil)
   (setq-default evil-escape-key-sequence "ii")
   (setq-default evil-escape-delay 0.3)
 
@@ -256,6 +257,8 @@ layers configuration. You are free to put any user code."
 
   ;; prevent demoting heading also shifting text inside sections
   (setq org-adapt-indentation nil)
+
+  (setq powerline-default-separator 'arrow)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
