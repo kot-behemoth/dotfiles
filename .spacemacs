@@ -256,51 +256,6 @@ layers configuration. You are free to put any user code."
 
   ;; prevent demoting heading also shifting text inside sections
   (setq org-adapt-indentation nil)
-
-  ;; SQL setup
-  (setq sql-connection-alist
-        '((local (sql-product 'postgres)
-                   (sql-server "localhost")
-                   (sql-user "greg")
-                   (sql-database "ts_development"))
-          (staging (sql-product 'postgres)
-                   (sql-server "ec2-52-19-186-164.eu-west-1.compute.amazonaws.com")
-                   (sql-user "archiver")
-                   (sql-database "ts_backup"))
-          (production (sql-product 'postgres)
-                      (sql-server "ec2-52-30-161-39.eu-west-1.compute.amazonaws.com")
-                      (sql-user "archiver")
-                      (sql-database "ts_production"))))
-
-  (defun my-sql-local ()
-    (interactive)
-    (my-sql-connect 'postgres 'local))
-
-  (defun my-sql-staging ()
-    (interactive)
-    (my-sql-connect 'postgres 'staging))
-
-  (defun my-sql-production ()
-    (interactive)
-    (my-sql-connect 'postgres 'production))
-
-  (defun my-sql-connect (product connection)
-    ;; remember to set the sql-product, otherwise, it will fail for the first time
-    ;; you call the function
-    (setq sql-product product)
-    (sql-connect connection))
-
-  (defvar my-sql-servers-list
-    '(("Local" my-sql-local)
-      ("Staging" my-sql-staging)
-      ("Production" my-sql-production))
-    "Alist of server name and the function to connect")
-
-  (defun my-sql-connect-server (func)
-    "Connect to the input server using my-sql-servers-list"
-    (interactive
-     (helm-comp-read "Select server: " my-sql-servers-list))
-    (funcall func))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
