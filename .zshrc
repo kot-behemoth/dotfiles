@@ -40,3 +40,8 @@ source $(brew --prefix nvm)/nvm.sh
 
 # Zsh custom
 bindkey "^R" history-incremental-search-backward
+
+# rbenv
+export RBENV_ROOT=/usr/local/var/rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
