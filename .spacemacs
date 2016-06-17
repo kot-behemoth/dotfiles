@@ -257,6 +257,37 @@ layers configuration. You are free to put any user code."
   ;; prevent demoting heading also shifting text inside sections
   (setq org-adapt-indentation nil)
 
+
+  ;; SQL setup
+  (setq sql-connection-alist
+        '((local (sql-product 'postgres)
+                   (sql-server "localhost")
+                   (sql-user "appearhere")
+                   (sql-password "appearhere")
+                   (sql-database "appearhere_development"))))
+
+  (defun postgres-dev ()
+    (interactive)
+    (my-sql-connect 'postgres 'local))
+
+  (defun my-sql-connect (product connection)
+    ;; remember to set the sql-product, otherwise, it will fail for the first time
+    ;; you call the function
+    (setq sql-product product)
+    (sql-connect connection))
+
+  (defvar my-sql-servers-list
+    '(("Local" my-sql-local)
+      )
+    "Alist of server name and the function to connect")
+
+  (defun my-sql-connect-server (func)
+    "Connect to the input server using my-sql-servers-list"
+    (interactive
+     (helm-comp-read "Select server: " my-sql-servers-list))
+    (funcall func))
+
+
   (setq powerline-default-separator 'arrow)
 )
 
