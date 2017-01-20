@@ -42,6 +42,6 @@ source $(brew --prefix nvm)/nvm.sh
 bindkey "^R" history-incremental-search-backward
 
 # rbenv
-export RBENV_ROOT=/usr/local/var/rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+export PATH=~/miniconda3/bin:"$PATH"
+
+alias e='emacsclient --no-wait'

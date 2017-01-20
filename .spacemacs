@@ -23,6 +23,7 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
+     auto-completion
      better-defaults
      emacs-lisp
      python
@@ -32,6 +33,7 @@ values."
      org
      sql
      ansible
+     html
      ;; (shell :variables
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
@@ -227,11 +229,21 @@ user code."
  This function is called at the very end of Spacemacs initialization after
 layers configuration. You are free to put any user code."
 
+  (setq powerline-default-separator nil)
+  (spaceline-compile)
+
+  ;; fix Tramp's shell
+  (setq explicit-shell-file-name "/bin/bash")
+
   (setq-default evil-escape-key-sequence "ii")
   (setq-default evil-escape-delay 0.3)
 
   (global-set-key (kbd "C-k") `evil-scroll-page-up)
   (global-set-key (kbd "C-j") `evil-scroll-page-down)
+
+  ;; Turn on horizontal scrolling with mouse wheel
+  (global-set-key (kbd "<triple-wheel-left>") 'scroll-right)
+  (global-set-key (kbd "<triple-wheel-right>") 'scroll-left)
 
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
@@ -256,7 +268,6 @@ layers configuration. You are free to put any user code."
 
   ;; prevent demoting heading also shifting text inside sections
   (setq org-adapt-indentation nil)
-
 
   ;; SQL setup
   (setq sql-connection-alist
@@ -286,9 +297,6 @@ layers configuration. You are free to put any user code."
     (interactive
      (helm-comp-read "Select server: " my-sql-servers-list))
     (funcall func))
-
-
-  (setq powerline-default-separator 'arrow)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -298,7 +306,23 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(magit-pull-arguments nil))
+ '(magit-pull-arguments nil)
+ '(org-agenda-files (quote ("~/Dropbox/org/todo.org")))
+ '(sql-connection-alist
+   (quote
+    ((local
+      (sql-product
+       (quote postgres))
+      (sql-server "localhost")
+      (sql-user "appearhere")
+      (sql-password "appearhere")
+      (sql-database "appearhere_development"))
+     ("ah-rails"
+      (sql-product
+       (quote postgres))
+      (sql-user "greg")
+      (sql-database "appearhere_development")
+      (sql-server ""))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
