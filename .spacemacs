@@ -307,22 +307,6 @@ layers configuration. You are free to put any user code."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(magit-pull-arguments nil)
- '(org-agenda-files (quote ("~/Dropbox/org/todo.org")))
- '(sql-connection-alist
-   (quote
-    ((local
-      (sql-product
-       (quote postgres))
-      (sql-server "localhost")
-      (sql-user "appearhere")
-      (sql-password "appearhere")
-      (sql-database "appearhere_development"))
-     ("ah-rails"
-      (sql-product
-       (quote postgres))
-      (sql-user "greg")
-      (sql-database "appearhere_development")
-      (sql-server ""))))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
