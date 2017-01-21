@@ -11,32 +11,29 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 
-export WORKON_HOME=/Users/greg/.venvs
-source /usr/local/bin/virtualenvwrapper.sh
-alias mkvirtualenv='mkvirtualenv --no-site-packages --distribute'
+############################
+# Platform-specific settings
+############################
 
-if [ -f $(brew --prefix)/etc/zsh_completion ]; then
-  . $(brew --prefix)/etc/zsh_completion
-fi
-
+export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
 export VISUAL=/usr/bin/vim
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
+if [ "$(uname)" = "Darwin" ]; then
+    # MAC
+    #####
 
-# rbenv stuff
-#export RBENV_ROOT=/usr/local/var/rbenv
-#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-#eval "$(rbenv init -)"
+    if [ -f $(brew --prefix)/etc/zsh_completion ]; then
+        . $(brew --prefix)/etc/zsh_completion
+    fi
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+    ### Added by the Heroku Toolbelt
+    export PATH=/usr/local/heroku/bin:${PATH}
+    export PATH=/Applications/Postgres.app/Contents/Versions/9.3/bin:${PATH}
+elif [[ $(uname -s) = Linux* ]]; then
+    # Linux
+    #######
+fi
 
 # Zsh custom
 bindkey "^R" history-incremental-search-backward
