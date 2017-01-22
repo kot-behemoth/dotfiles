@@ -6,11 +6,13 @@
 brew install zsh
 zsh
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
 # Create a Zsh configuration by copying the configuration files provided by the repo.
 setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
+
 # Lastly, set Zsh as your default shell.
 chsh -s /bin/zsh
 ```
