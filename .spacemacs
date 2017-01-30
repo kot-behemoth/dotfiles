@@ -34,12 +34,6 @@ values."
      sql
      ansible
      html
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
-     ;; version-control
      osx
      themes-megapack
      )
@@ -107,12 +101,12 @@ values."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Input"
+   dotspacemacs-default-font '("Liberation Mono"
                                :size 12
                                ;; :antialias nil
                                ;; :weight normal
                                ;; :width normal
-                               ; :powerline-scale 1.1
+                               ;; :powerline-scale 1.1
                                )
    ;; The leader key
    dotspacemacs-leader-key "SPC"
@@ -143,7 +137,7 @@ values."
    dotspacemacs-use-ido nil
    ;; If non nil, `helm' will try to miminimize the space it uses. (default nil)
    dotspacemacs-helm-resize nil
-   ;; if non nil, the helm header is hidden when there is only one source.
+   ;; if non nil, the helm header is hidden when there is only onesource.
    ;; (default nil)
    dotspacemacs-helm-no-header nil
    ;; define the position to display `helm', options are `bottom', `top',
@@ -257,6 +251,10 @@ layers configuration. You are free to put any user code."
 
   (global-set-key [(M \3)] "#")
 
+  (define-key global-map [?\s-x] 'kill-region)
+  (define-key global-map [?\s-c] 'kill-ring-save)
+  (define-key global-map [?\s-v] 'yank)
+
   ;; scroll one line at a time (less "jumpy" than defaults)
   (setq mouse-wheel-scroll-amount '(2 ((shift) . 1))) ;; two lines at a time
   (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
@@ -275,20 +273,35 @@ layers configuration. You are free to put any user code."
                    (sql-server "localhost")
                    (sql-user "appearhere")
                    (sql-password "appearhere")
-                   (sql-database "appearhere_development"))))
+                   (sql-database "appearhere_development"))
+         (sca-wh (sql-product 'postgres)
+              (sql-server "datawarehouse.cvfgrn2lzdlx.ap-southeast-2.redshift.amazonaws.com")
+              (sql-user "awsuser")
+              (sql-port 5439)
+              (sql-database "datawarehouse"))
+        ))
+
+  (setq browse-url-browser-function 'browse-url-generic
+        browse-url-generic-program "google-chrome")
 
   (defun postgres-dev ()
     (interactive)
-    (my-sql-connect 'postgres 'local))
+    (sql-connect-favourite 'postgres 'local))
 
-  (defun my-sql-connect (product connection)
+  (defun redshift-sca-wh ()
+    (interactive)
+    (sql-connect-favourite 'postgres 'sca-wh))
+
+  (defun sql-connect-favourite (product connection)
     ;; remember to set the sql-product, otherwise, it will fail for the first time
     ;; you call the function
     (setq sql-product product)
     (sql-connect connection))
 
   (defvar my-sql-servers-list
-    '(("Local" my-sql-local)
+    '(
+      ("Local" postgres-dev)
+      ("Warehouse" redshift-sca-wh)
       )
     "Alist of server name and the function to connect")
 
@@ -306,7 +319,7 @@ layers configuration. You are free to put any user code."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(magit-pull-arguments nil)
+ '(magit-pull-arguments nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
