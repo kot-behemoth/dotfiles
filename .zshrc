@@ -40,5 +40,7 @@ bindkey "^R" history-incremental-search-backward
 
 # rbenv
 export PATH=~/miniconda3/bin:"$PATH"
+# AWS CLI
+export PATH=~/bin:$PATH
 
 alias e='emacsclient --no-wait'
