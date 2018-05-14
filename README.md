@@ -8,6 +8,14 @@ If on linux, will require `font-viewer`, via `sudo apt-get install gnome-font-vi
 
 # Installation
 
+## Installing spacemacs
+
+Need to link .spacemacs.d to ~/.spacemacs.d
+
+```bash
+ln -s dotfiles/.spacemacs.d .spacemacs.d
+```
+
 ## Installing zsh prezto
 
 ```shell
@@ -27,12 +35,11 @@ chsh -s /bin/zsh
 
 ## Linking up the files
 
-```shell
+```bash
 cd ~
 ln -s dotfiles/.zshrc .zshrc
 ln -s dotfiles/.zpreztorc .zpreztorc
 ln -s dotfiles/.vimrc .vimrc
-ln -s dotfiles/.spacemacs .spacemacs
 ```
 
 ## Terminal themes
