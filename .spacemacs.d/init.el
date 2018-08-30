@@ -15,11 +15,7 @@
 
 (defun dotspacemacs/init ()
   "Instantiate Spacemacs core settings."
-
-  (setq url-proxy-services '(("http" . "webproxy.ssmb.com:8092")
-                             ("https" . "webproxy.ssmb.com:8092")
-                             ("no_proxy" . "^\\(localhost\\|127.*\\|.*nsroot.net\\)")))
-
+  (dotspacemacs/init/proxy)
   (dotspacemacs/init/coding)
   (dotspacemacs/init/display)
   (dotspacemacs/init/evil)
@@ -60,15 +56,15 @@
     syntax-checking
     org
 
-    ;; (shell :variables
-    ;;        shell-default-shell 'eshell)
-    ;; TODO: move to personal layer
-    (shell :variables
-           explicit-shell-file-name "C:/Users/gg85560/AppData/Local/Programs/Git/bin/bash.exe"
-           shell-file-name          "C:/Users/gg85560/AppData/Local/Programs/Git/bin/bash.exe"
-           explicit-bash.exe-args '("--login" "-i")
-           shell-default-height 30
-           shell-default-position 'bottom)
+    (if windows?
+      '(shell :variables
+              explicit-shell-file-name "C:/Users/gg85560/AppData/Local/Programs/Git/bin/bash.exe"
+              shell-file-name          "C:/Users/gg85560/AppData/Local/Programs/Git/bin/bash.exe"
+              explicit-bash.exe-args '("--login" "-i")
+              shell-default-height 30
+              shell-default-position 'bottom)
+      '(shell :variables
+              shell-default-shell 'eshell))
 
     (auto-completion :variables
                      auto-completion-return-key-behavior 'complete
@@ -106,7 +102,7 @@
 
 (defvar dotspacemacs/layers/extra
   '(
-    osx
+    (if (not windows?) osx)
     vinegar
     evil-commentary
     themes-megapack
@@ -168,11 +164,12 @@
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(monokai
                          solarized-light)
-   dotspacemacs-default-font `("Consolas"
-                               ;; :size ,(cond ((not linux?) 12)
-                               ;;              (desktop? 20)
-                               ;;              (t 34))
-                               :size 16)
+
+   dotspacemacs-default-font (if windows?
+                                 ;; we're on windows
+                                 '("Consolas" :size 16)
+                                 ;; mac font
+                                 '("Menlo" :size 16))
 
    dotspacemacs-fullscreen-at-startup nil
    dotspacemacs-fullscreen-use-non-native nil
@@ -236,17 +233,23 @@
    dotspacemacs-helm-no-header nil
    dotspacemacs-helm-position 'bottom))
 
+;;;; Proxy
+
+(defun dotspacemacs/init/proxy ()
+  ;; Corporate proxy
+  (if windows?
+      (setq-default url-proxy-services '(("http" . "webproxy.ssmb.com:8092")
+                                         ("https" . "webproxy.ssmb.com:8092")
+                                         ("no_proxy" . "^\\(localhost\\|127.*\\|.*nsroot.net\\)")))))
+
 ;;;; Packages
 
 (defun dotspacemacs/init/packages ()
   (setq-default
    dotspacemacs-default-package-repository nil
 
-   ;; TODO: should really be switched by windows?
-   ;; dotspacemacs-elpa-https t
-   ;; dotspacemacs-elpa-timeout 5
-   dotspacemacs-elpa-https nil
-   dotspacemacs-elpa-timeout 300
+   dotspacemacs-elpa-https (if windows? nil t)
+   dotspacemacs-elpa-https (if windows? 300 5)
 
    dotspacemacs-check-for-update t
    dotspacemacs-elpa-subdirectory nil))
