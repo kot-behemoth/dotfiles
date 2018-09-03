@@ -107,6 +107,13 @@
     evil-commentary
     themes-megapack
     docker
+    
+    (ranger :variables
+        ranger-show-preview t
+        ranger-show-hidden t
+        ranger-cleanup-eagerly t
+        ranger-cleanup-on-disable t
+        ranger-ignored-extensions '("mkv" "flv" "iso" "mp4"))
 
     ;; (ibuffer :variables
     ;;          ibuffer-group-buffers-by 'projects)
