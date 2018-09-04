@@ -17,7 +17,9 @@ fi
 ############################
 
 export PATH=/usr/local/bin:/usr/local/sbin:${PATH}
-export VISUAL=/usr/bin/vim
+export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export PATH="/Users/greg/.composer/vendor/bin:$PATH"
 
 if [ "$(uname)" = "Darwin" ]; then
     # MAC

@@ -64,7 +64,8 @@
               shell-default-height 30
               shell-default-position 'bottom)
       '(shell :variables
-              shell-default-shell 'eshell))
+              explicit-shell-file-name "/usr/local/bin/bash"
+              shell-file-name "/usr/local/bin/bash"))
 
     (auto-completion :variables
                      auto-completion-return-key-behavior 'complete
