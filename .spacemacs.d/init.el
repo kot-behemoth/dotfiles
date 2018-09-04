@@ -51,24 +51,24 @@
 ;;;; Core
 
 (defvar dotspacemacs/layers/core
-  '(better-defaults
+  `(better-defaults
     git
     syntax-checking
     org
 
-    `(shell :variables
-            ,@(if windows?
-                  '(explicit-shell-file-name "C:/Users/gg85560/AppData/Local/Programs/Git/bin/bash.exe"
-                    shell-file-name          "C:/Users/gg85560/AppData/Local/Programs/Git/bin/bash.exe"
-                    explicit-bash.exe-args '("--login" "-i")
-                    testing-arg "true"
-                    shell-default-height 30
-                    shell-default-position 'bottom)
-            '(shell-default-shell 'eshell)))
+    ,(if windows?
+        '(shell :variables
+                explicit-shell-file-name  "C:/Users/gg85560/AppData/Local/Programs/Git/bin/bash.exe"
+                shell-file-name           "C:/Users/gg85560/AppData/Local/Programs/Git/bin/bash.exe"
+                explicit-bash.exe-args    '("--login"  "-i")
+                shell-default-height      30
+                shell-default-position    'bottom)
+       '(shell :variables
+               shell-default-shell        'eshell))
 
     (auto-completion :variables
-                     auto-completion-return-key-behavior 'complete
-                     auto-completion-tab-key-behavior 'complete
+                     auto-completion-return-key-behavior      'complete
+                     auto-completion-tab-key-behavior         'complete
                      auto-completion-enable-snippets-in-popup t)
     version-control)
 
@@ -76,27 +76,27 @@
 
 ;;;; Langs
 
-  (defvar dotspacemacs/layers/langs
-    '(;; Markups
-      csv
-      html
-      markdown
+(defvar dotspacemacs/layers/langs
+  '(;; Markups
+    csv
+    html
+    markdown
 
-      ;; Languages
-      emacs-lisp
-      javascript
-      ipython-notebook
-      sql
-      ess
+    ;; Languages
+    emacs-lisp
+    javascript
+    ipython-notebook
+    sql
+    ess
 
-      (clojure :variables
-               clojure-enable-fancify-symbols t)
-      (python :variables
-              python-test-runner 'pytest
-              :packages
-              (not importmagic)))  ; Broken? Don't need it.
+    (clojure :variables
+              clojure-enable-fancify-symbols t)
+    (python :variables
+            python-test-runner 'pytest
+            :packages
+            (not importmagic)))  ; Broken? Don't need it.
 
-    "Programming and markup language layers.")
+  "Programming and markup language layers.")
 
 ;;;; Extra
 
@@ -113,11 +113,7 @@
             ranger-show-hidden t
             ranger-cleanup-eagerly t
             ranger-cleanup-on-disable t
-            ranger-ignored-extensions '("mkv" "flv" "iso" "mp4" "zip"))
-
-    ;; (ibuffer :variables
-    ;;          ibuffer-group-buffers-by 'projects)
-    )
+            ranger-ignored-extensions '("mkv" "flv" "iso" "mp4" "zip")))
 
   "Miscellaneous layers.")
 
@@ -131,8 +127,8 @@
                                             ,@dotspacemacs/layers/core
                                             ,@dotspacemacs/layers/langs
                                             ,@dotspacemacs/layers/extra))
-  dotspacemacs-distribution               'spacemacs
-  dotspacemacs-enable-lazy-installation   'unused)
+   dotspacemacs-distribution               'spacemacs
+   dotspacemacs-enable-lazy-installation   'unused)
 
 ;;;; Layers/packages
 
