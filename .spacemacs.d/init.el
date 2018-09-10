@@ -58,14 +58,16 @@
 
     ,(if windows?
         '(shell :variables
-                explicit-shell-file-name  "C:/Users/gg85560/AppData/Local/Programs/Git/bin/bash.exe"
-                shell-file-name           "C:/Users/gg85560/AppData/Local/Programs/Git/bin/bash.exe"
-                explicit-bash.exe-args    '("--login"  "-i")
+                explicit-shell-file-name  "cmdproxy.exe"
+                ;; this will be used by subprocesses that are started with
+                ;; shell-command and related non-interactive shell commands.
+                ;; Let's keep it the same, so it's bash.exe. Less warnings.
+                ;; shell-file-name           "cmd.exe"
+                shell-default-shell       'shell
                 shell-default-height      30
                 shell-default-position    'bottom)
        '(shell :variables
-               explicit-shell-file-name   "/usr/local/bin/bash"
-               shell-file-name            "/usr/local/bin/bash"))
+               shell-default-shell        'eshell))
 
     (auto-completion :variables
                      auto-completion-return-key-behavior      'complete
@@ -140,7 +142,9 @@
                                       yaml-mode
                                       json-mode
                                       wsd-mode
-                                      web-mode)
+                                      web-mode
+                                      writeroom-mode
+                                      minimal-theme)
    dotspacemacs-excluded-packages '(importmagic)
    dotspacemacs-frozen-packages '()
    dotspacemacs-install-packages 'used-but-keep-unused))
@@ -166,8 +170,8 @@
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(monokai
-                         solarized-light)
+   dotspacemacs-themes '(minimal-light
+                         monokai)
 
    dotspacemacs-default-font (if windows?
                                  ;; we're on windows
@@ -287,19 +291,7 @@
 (defun dotspacemacs/user-config/experiments ()
   "Space for trying out configuration updates."
   (setq-default powerline-default-separator nil)
-  )
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (ranger define-word flycheck-pos-tip pos-tip clj-refactor inflections edn paredit cider sesman seq queue flycheck clojure-snippets peg cider-eval-sexp-fu clojure-mode zenburn-theme zen-and-art-theme yapfify yaml-mode xterm-color wsd-mode ws-butler winum white-sand-theme which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme toxi-theme toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit sunny-day-theme sublime-themes subatomic256-theme subatomic-theme sql-indent spaceline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme scss-mode sass-mode reverse-theme reveal-in-osx-finder restart-emacs rebecca-theme rainbow-delimiters railscasts-theme pyvenv pytest pyenv-mode py-isort purple-haze-theme pug-mode professional-theme powershell popwin planet-theme pip-requirements phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pcre2el pbcopy paradox osx-trash osx-dictionary orgit organic-green-theme org-projectile org-present org-pomodoro org-mime org-download org-bullets open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme neotree naquadah-theme mwim mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minimal-theme material-theme markdown-toc majapahit-theme magit-gitflow madhat2r-theme macrostep lush-theme lorem-ipsum livid-mode live-py-mode linum-relative link-hint light-soap-theme less-css-mode launchctl js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme inkpot-theme indent-guide hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md gandalf-theme fuzzy flx-ido flatui-theme flatland-theme fill-column-indicator farmhouse-theme fancy-battery eyebrowse expand-region exotica-theme exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-commentary evil-args evil-anzu eval-sexp-fu ess-smart-equals ess-R-data-view espresso-theme eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav ein dumb-jump dracula-theme dockerfile-mode docker django-theme diminish diff-hl darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme cython-mode cyberpunk-theme csv-mode conda company-web company-tern company-statistics company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized coffee-mode clues-theme clean-aindent-mode cherry-blossom-theme busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 257)) (:foreground "#F8F8F2" :background "#272822")) (((class color) (min-colors 89)) (:foreground "#F5F5F5" :background "#1B1E1C")))))
+  (add-hook 'ein:notebook-multilang-mode-hook
+            #'(lambda () (spacemacs/toggle-whitespace-cleanup-off)))
+  )
