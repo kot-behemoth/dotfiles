@@ -2,10 +2,16 @@
 
 ;; Place your private configuration here
 (setq doom-font (font-spec :family "Consolas" :size 16))
+(setq doom-localleader-key ",")
 
 (map! (:after helm-files
         :map (helm-find-files-map helm-read-file-map)
         "C-l"      #'helm-execute-persistent-action
         "C-h"      #'helm-find-files-up-one-level
+        )
+
+      :leader
+      (:desc "toggle" :prefix "t"
+        :desc "Line wrap" :n "l" #'toggle-truncate-lines
         )
       )
