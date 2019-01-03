@@ -45,12 +45,16 @@
        :editor
        ;;(format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who dont like vim
-       multiple-cursors  ; editing in many places at once
+       ;;multiple-cursors  ; editing in many places at once
        ;;parinfer          ; turn lisp into python, sort of
-       rotate-text       ; cycle region at point between text candidates
+       ;;rotate-text       ; cycle region at point between text candidates
 
        :emacs
-       dired             ; making dired pretty [functional]
+       (dired            ; making dired pretty [functional]
+        +ranger          ; bringing the goodness of ranger to dired
+        +icons           ; colorful icons for dired-mode
+       )
+
        ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
        ;;eshell            ; a consistent, cross-platform shell (WIP)
@@ -62,7 +66,7 @@
        :tools
        ;;ansible
        ;;docker
-       editorconfig      ; let someone else argue about tabs vs spaces
+       ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        ;;gist              ; interacting with github gists
        ;;macos             ; MacOS-specific commands
