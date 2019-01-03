@@ -10,8 +10,15 @@
         "C-h"      #'helm-find-files-up-one-level
         )
 
+      ;; LEADER-based shortcuts
       :leader
       (:desc "toggle" :prefix "t"
         :desc "Line wrap" :n "l" #'toggle-truncate-lines
         )
+
+      (:after dired
+        (:prefix ("o" . "open")
+            :desc "Ranger" "r"  #'ranger
+            ))
       )
+
