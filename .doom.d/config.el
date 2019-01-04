@@ -10,6 +10,15 @@
         "C-h"      #'helm-find-files-up-one-level
         )
 
+      (:when (featurep! :feature helm)
+        "M-f" #'swiper-helm
+      )
+
+      (:when (featurep! :feature evil)
+        :n "j" #'evil-next-visual-line
+        :n "k" #'evil-previous-visual-line
+        )
+
       ;; LEADER-based shortcuts
       :leader
       (:desc "toggle" :prefix "t"
