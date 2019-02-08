@@ -4,6 +4,9 @@
 (setq doom-font (font-spec :family "Consolas" :size 16))
 (setq doom-localleader-key ",")
 
+;; Make gsSPC work in all windows
+(setq avy-all-windows t)
+
 (map! (:after helm-files
         :map (helm-find-files-map helm-read-file-map)
         "C-l"      #'helm-execute-persistent-action
