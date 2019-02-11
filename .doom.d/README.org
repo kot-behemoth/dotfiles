@@ -1,5 +1,5 @@
 ** Default keybindings
-  https://github.com/hlissner/doom-emacs/blob/develop/core/core-keybinds.el
+  https://github.com/hlissner/doom-emacs/blob/develop/modules/config/default/+evil-bindings.el
   
 ** map! macro
 
