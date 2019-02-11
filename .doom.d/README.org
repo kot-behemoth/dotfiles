@@ -3,7 +3,7 @@
   
 ** map! macro
 
-#+begin_verse
+#+begin_src
 A convenience macro for defining keybinds, powered by `general'.
 If evil isn't loaded, evil-specific bindings are ignored.
 States
@@ -42,7 +42,7 @@ Example
         (:when IS-MAC
          :n \"M-s\" 'some-fn
          :i \"M-o\" (lambda (interactive) (message \"Hi\"))))"
-#+end_verse
+#+end_src
   
 ** Naming conventions
 + `doom/abc` A public, interactive command, designed to be used via `M-x` or a
