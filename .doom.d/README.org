@@ -1,5 +1,6 @@
 ** Default keybindings
-  https://github.com/hlissner/doom-emacs/blob/develop/modules/config/default/+bindings.el
+  https://github.com/hlissner/doom-emacs/blob/develop/core/core-keybinds.el
+  
 ** Naming conventions
 + `doom/abc` A public, interactive command, designed to be used via `M-x` or a
   keybinding.
@@ -17,5 +18,6 @@
 + Functions prefixed with `+abc...` belong to a module, e.g.
   `+emacs-lisp|init-hook` is a hook function in the `lang/emacs-lisp` module.
 + `=abc` An interactive command that invokes an app module.
+
 ** Spacemacs-like keys
 https://github.com/jsmestad/dfiles/blob/master/.doom.d/%2Bbindings.el#L496-L854
