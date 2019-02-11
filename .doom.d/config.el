@@ -36,6 +36,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Shells
 
+(set-popup-rule! "^\\*shell.*" :side 'right :size 80 :slot 3 :select nil :quit nil :modeline t)
 (set-popup-rule! "^\\*cmd.exe" :side 'right :size 80 :vslot 1 :select nil)
 (set-popup-rule! "^\\*PowerShell" :side 'right :size 80 :vslot 2 :select nil)
-(set-popup-rule! "^\\*shell" :side 'right :size 80 :vslot 3 :select nil)
+
+
