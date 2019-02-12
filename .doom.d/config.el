@@ -3,7 +3,6 @@
 ;; Place your private configuration here
 (setq doom-font (font-spec :family "Consolas" :size 16))
 (setq doom-localleader-key ",")
-
 ;; Make gsSPC work in all windows
 (setq avy-all-windows t)
 
@@ -12,25 +11,28 @@
         "C-l"      #'helm-execute-persistent-action
         "C-h"      #'helm-find-files-up-one-level)
 
-
-      (:when (featurep! :feature helm)
-        "M-f" #'swiper-helm)
-
+      ;; Add easy way to find
+      (:map override
+        "M-f" #'swiper-helm)  ;; can also be called via SPC / b
 
       (:when (featurep! :feature evil)
         :n "j" #'evil-next-visual-line
         :n "k" #'evil-previous-visual-line)
 
+      (:map shell-mode-map
+        "C-k"      #'comint-previous-input
+        "C-j"      #'comint-next-input
+        "C-l"      #'helm-comint-input-ring)
 
       ;; LEADER-based shortcuts
       :leader
       (:desc "toggle" :prefix "t"
         :desc "Line wrap" :n "l" #'toggle-truncate-lines)
 
-
       (:after dired
         (:prefix ("o" . "open")
-          :desc "Ranger" "r"  #'ranger)))
+          :desc "Deer" "r"  #'deer
+          :desc "Ranger" "R"  #'ranger)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
