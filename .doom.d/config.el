@@ -1,7 +1,6 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
-(setq doom-font (font-spec :family "Consolas" :size 16))
 (setq doom-localleader-key ",")
 ;; Make gsSPC work in all windows
 (setq avy-all-windows t)
@@ -33,6 +32,23 @@
         (:prefix ("o" . "open")
           :desc "Deer" "r"  #'deer
           :desc "Ranger" "R"  #'ranger)))
+
+(after! evil-escape
+  (setq evil-escape-key-sequence "ii"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Windows-specific
+(setq doom-font (font-spec :family "Consolas" :size 16))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Mac-specific
+;; TODO: add IS_MAC etc
+(setq doom-font (font-spec :family "Fira Code" :size 16))
+(global-set-key (kbd "A-3") '(lambda () (interactive) (insert "#")))
+
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+(add-to-list 'default-frame-alist '(ns-appearance . dark))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

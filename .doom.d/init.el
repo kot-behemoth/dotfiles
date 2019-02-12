@@ -68,8 +68,8 @@
        ;;docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
-       ;;gist              ; interacting with github gists
-       ;;macos             ; MacOS-specific commands
+       gist              ; interacting with github gists
+       macos             ; MacOS-specific commands
        ;;make              ; run make tasks from Emacs
        magit             ; a git porcelain for Emacs
        ;;password-store    ; password manager for nerds
@@ -84,7 +84,7 @@
        :lang
        ;;assembly          ; assembly for fun or debugging
        ;;(cc +irony +rtags); C/C++/Obj-C madness
-       ;;clojure           ; java with a lisp
+       clojure           ; java with a lisp
        ;;common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
        ;;crystal           ; ruby at the speed of c
@@ -94,13 +94,13 @@
        ;;elixir            ; erlang done right
        ;;elm               ; care for a cup of TEA?
        emacs-lisp        ; drown in parentheses
-       ;;ess               ; emacs speaks statistics
+       ess               ; emacs speaks statistics
        ;;go                ; the hipster dialect
        ;;(haskell +intero) ; a language that's lazier than I am
        ;;hy                ; readability of scheme w/ speed of python
        ;;idris             ;
        ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
-       ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
+       javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;latex             ; writing papers in Emacs has never been so fun
        ;;ledger            ; an accounting system in Emacs
@@ -111,7 +111,7 @@
        ;;ocaml             ; an objective camel
        (org              ; organize your plain life in plain text
         +attach          ; custom attachment system
-        +babel           ; running code in org
+        ;+babel           ; running code in org
         +capture         ; org-capture in and outside of Emacs
         +export          ; Exporting org to whatever you want
         ;+present)        ; Emacs for presentations
@@ -160,11 +160,4 @@
        ;; reference for your own modules.
        (default +bindings +evil-commands))
 
-;; disable icons in Neotree until we get local admin and install icons
-(def-package-hook! doom-themes
-  :pre-config
-  (setq doom-neotree-file-icons f)
-  nil)
 
-(after! evil-escape
-  (setq evil-escape-key-sequence "ii"))
