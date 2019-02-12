@@ -8,12 +8,18 @@ If on linux, will require `font-viewer`, via `sudo apt-get install gnome-font-vi
 
 # Installation
 
-## Installing spacemacs
+## Installing Spacemacs
 
-Need to link .spacemacs.d to ~/.spacemacs.d
+Need to link `.spacemacs.d` to `~/.spacemacs.d`
 
 ```bash
 ln -s dotfiles/.spacemacs.d .spacemacs.d
+```
+
+## Installing Doom-emacs
+
+```bash
+ln -s dotfiles/.doom.d .doom.d
 ```
 
 ## Installing zsh prezto
