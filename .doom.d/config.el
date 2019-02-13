@@ -18,9 +18,11 @@
         :n "j" #'evil-next-visual-line
         :n "k" #'evil-previous-visual-line)
 
-      (:map shell-mode-map
+      (:map comint-mode-map
         "C-k"      #'comint-previous-input
         "C-j"      #'comint-next-input
+        "M-k"      #'comint-previous-prompt
+        "M-j"      #'comint-next-prompt
         "C-l"      #'helm-comint-input-ring)
 
       ;; LEADER-based shortcuts
@@ -33,8 +35,13 @@
           :desc "Deer" "r"  #'deer
           :desc "Ranger" "R"  #'ranger)))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Package config
 (after! evil-escape
   (setq evil-escape-key-sequence "ii"))
+
+(after! shx
+  (shx-global-mode 1))  ; toggle shx-mode on globally
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
