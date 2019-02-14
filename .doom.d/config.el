@@ -71,7 +71,7 @@
     :stop-signal 'sigkill
     :kill-process-buffer-on-stop t
     :ready-message "Use Control-C to stop this server"
-    :init (lambda () (pyvenv-workon "venv"))))
+    :init (lambda () (pyvenv-activate "/path/to/venv")))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
