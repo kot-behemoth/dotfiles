@@ -1,9 +1,10 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here
 (setq doom-localleader-key ",")
 ;; Make gsSPC work in all windows
 (setq avy-all-windows t)
+(setq lisp-indent-offset 2)
+(setq doom-theme 'doom-molokai)
 
 (map! (:after helm-files
         :map (helm-find-files-map helm-read-file-map)
@@ -30,10 +31,34 @@
       (:desc "toggle" :prefix "t"
         :desc "Line wrap" :n "l" #'toggle-truncate-lines)
 
-      (:after dired
-        (:prefix ("o" . "open")
-          :desc "Deer" "r"  #'deer
-          :desc "Ranger" "R"  #'ranger)))
+      (:prefix ("a" . "apps")
+          :desc "Prodigy" "p"  #'prodigy
+          :desc "Deer"    "r"  #'deer
+          :desc "Ranger"  "R"  #'ranger))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Prodigy services
+;; very interesting use of :ready-message and custom dirs
+;; https://github.com/wzb56/.emacs.d/blob/master/init/init-prodigy.el
+;; and https://writequit.org/org/settings.html#sec-1-28
+;;
+;; might be useful for remapping keybindings
+;; https://github.com/emacs-evil/evil-collection/blob/master/evil-collection-prodigy.el
+
+(after! prodigy
+  (prodigy-define-service
+    :name "(venv) Jupyter lab"
+    :command "jupyter"
+    :args '("lab")
+    :port 8888
+    :cwd "...dir..."
+    :tags '(work)
+    :stop-signal 'sigkill
+    :kill-process-buffer-on-stop t
+    :ready-message "Use Control-C to stop this server"
+    :init (lambda () (pyvenv-workon "venv"))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package config
