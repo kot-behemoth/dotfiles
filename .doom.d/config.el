@@ -25,6 +25,20 @@
         "M-k"      #'comint-previous-prompt
         "M-j"      #'comint-next-prompt
         "C-l"      #'helm-comint-input-ring)
+      
+      ;; FIXME: probably better done by using evil-collection-prodigy better
+      ;; https://github.com/emacs-evil/evil-collection/blob/master/evil-collection-prodigy.el
+      (:after prodigy
+        (:map prodigy-mode-map
+          "q" 'quit-window
+
+          "j" 'prodigy-next
+          "k" 'prodigy-prev
+          "gg" 'prodigy-first
+          "G" 'prodigy-last
+
+          "Jm" 'prodigy-jump-magit
+          "Jd" 'prodigy-jump-dired))
 
       ;; LEADER-based shortcuts
       :leader
