@@ -68,6 +68,7 @@
        flycheck          ; tasing you for every semicolon you forget
        ;;flyspell          ; tasing you for misspelling mispelling
        ;;gist              ; interacting with github gists
+       lsp
        macos             ; MacOS-specific commands
        ;;make              ; run make tasks from Emacs
        magit             ; a git porcelain for Emacs
@@ -113,15 +114,15 @@
         +babel           ; running code in org
         +capture         ; org-capture in and outside of Emacs
         +export)          ; Exporting org to whatever you want
-                                        ;+present)        ; Emacs for presentations
+       ;+present)        ; Emacs for presentations
 
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
-       (python             ; beautiful is better than ugly
+       (python             
          +pyvenv
-         +lsp)
+         +lsp)             ; beautiful is better than ugly
        ;;qt                ; the 'cutest' gui framework ever
        ;;racket            ; a DSL for DSLs
        ;;rest              ; Emacs as a REST client
@@ -161,8 +162,4 @@
        ;; reference for your own modules.
        (default +bindings +evil-commands))
 
-;; disable icons in Neotree until we get local admin and install icons
-(def-package-hook! doom-themes
-  :pre-config
-  (setq doom-neotree-file-icons f)
-  nil)
+
