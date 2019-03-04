@@ -91,9 +91,12 @@
 (after! evil-escape
   (setq evil-escape-key-sequence "ii"))
 
-(after! shx shell
+(after! shx
   (shx-global-mode 1))  ; toggle shx-mode on globally
 
+(map!
+  :map org-mode-map
+  :localleader "p" #'org-cliplink)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Windows-specific
