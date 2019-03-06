@@ -7,3 +7,5 @@
 ;; (package! builtin-package :disable t)
 
 (package! shx)
+(package! org-cliplink)
+(package! ox-clip)
