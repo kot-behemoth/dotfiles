@@ -48,11 +48,6 @@
     "Jm" 'prodigy-jump-magit
     "Jd" 'prodigy-jump-dired))
 
-  (:after ox-clip
-   :localleader
-   (:map org-mode-map
-    "C" #'ox-clip-formatted-copy))
-
    ;; LEADER-based shortcuts
   :leader
   (:desc "toggle" :prefix "t"
@@ -82,15 +77,16 @@
 (after! evil-escape
   (setq evil-escape-key-sequence "ii"))
 
+;; FIXME: need to add :after (ox-clip shx)
+(map! 
+  :localleader
+  :map org-mode-map
+  "C" #'ox-clip-formatted-copy
+  "p" #'org-cliplink)
+
 ;; FIXME doesn't necessarily work on macos
 (after! shx
-  (shx-global-mode 1))  ; toggle shx-mode on globally
-
-(map!
-  (:after org-cliplink
-   (:map org-mode-map
-     :localleader
-     "p" #'org-cliplink)))
+  (shx-global-mode +1))  ; toggle shx-mode on globally
 
 (set-popup-rule! "^\\*shell.*" :side 'bottom :size 40 :slot 3 :select nil :quit nil :modeline t)
 
@@ -144,4 +140,3 @@
       ("3 Resources.org" :maxlevel . 1)
       ("inbox.org" :maxlevel . 1)
       ("people.org" :maxlevel . 1))))
-
