@@ -101,7 +101,7 @@
 (when IS-MAC
   (setq doom-font (font-spec :family "Fira Code" :size 16))
 
-  (global-set-key (kbd "a-3") '(lambda () (interactive) (insert "#")))
+  ;(global-set-key (kbd "a-3") '(lambda () (interactive) (insert "#")))
 
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
