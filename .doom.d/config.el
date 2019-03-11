@@ -88,7 +88,7 @@
 (after! shx
   (shx-global-mode +1))  ; toggle shx-mode on globally
 
-(set-popup-rule! "^\\*shell.*" :side 'bottom :size 40 :slot 3 :select nil :quit nil :modeline t)
+(set-popup-rule! "^\\*shell.*" :side 'bottom :size 20 :slot 3 :select nil :quit nil :modeline t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -98,10 +98,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when IS-MAC
+(when IS-MAC                               
   (setq doom-font (font-spec :family "Fira Code" :size 16))
 
-  ;(global-set-key (kbd "a-3") '(lambda () (interactive) (insert "#")))
+  (global-set-key (kbd "a-3") '(lambda () (interactive) (insert "#")))
 
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
@@ -139,4 +139,15 @@
       ("2 Areas.org" :maxlevel . 1)
       ("3 Resources.org" :maxlevel . 1)
       ("inbox.org" :maxlevel . 1)
-      ("people.org" :maxlevel . 1))))
+      ("people.org" :maxlevel . 1)))
+
+  (setq org-capture-templates
+        '(("t" "Task" entry (file "~/org/inbox.org"))
+          "* TODO %?\n"
+          ("p" "Project" entry
+            (file "~/org/1 Projects.org")
+            (file "~/.doom.d/org-templates/new-project.org"))
+          ("w" "Review: Weekly Review" entry (file+olp+datetree "/tmp/reviews.org")
+            (file "~/.doom.d/org-templates/weekly-review.org"))
+          ("m" "Review: Monthly Review" entry (file+olp+datetree "/tmp/reviews.org")
+            (file "~/.doom.d/org-templates/monthly-review.org")))))
