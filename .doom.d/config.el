@@ -77,13 +77,6 @@
 (after! evil-escape
   (setq evil-escape-key-sequence "ii"))
 
-;; FIXME: need to add :after (ox-clip shx)
-(map! 
-  :localleader
-  :map org-mode-map
-  "C" #'ox-clip-formatted-copy
-  "p" #'org-cliplink)
-
 ;; FIXME doesn't necessarily work on macos
 (after! shx
   (shx-global-mode +1))  ; toggle shx-mode on globally
@@ -96,6 +89,36 @@
 (after! ranger
   ;; Override dired-mode so it uses deer
   (add-hook! dired-mode #'ranger-override-dired-fn))
+
+;; Org-mode customisations
+(add-hook 'org-mode-hook (lambda! (display-line-numbers-mode 0)))
+;; FIXME: need to add :after (ox-clip shx)
+(map!
+  :localleader
+  :map org-mode-map
+  "C" #'ox-clip-formatted-copy
+  "p" #'org-cliplink)
+
+;; Focus-mode writing
+(after! olivetti
+  (setq-default olivetti-body-width 120
+                olivetti-hide-mode-line t)
+
+  (defun toggle-focus-mode ()
+    (interactive)
+    (doom/window-zoom)
+    (if (bound-and-true-p olivetti-mode)
+      (olivetti-mode 0)
+      (olivetti-mode 1))))
+
+(map!
+  :after olivetti
+  (:map org-mode-map
+    :localleader
+    :desc "Focus mode"
+    :n "f" #'toggle-focus-mode))
+  
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -184,3 +207,4 @@
 
   (map! :leader
     (:desc "P.A.R.A." :n "P" #'hydra-para/body)))
+
