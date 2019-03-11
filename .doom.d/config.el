@@ -172,7 +172,7 @@
       ("s" (+macos/reveal-in-finder "~/Dropbox"))
       ("S" (dired "~/Documents"))
       ("l" (+macos/reveal-in-finder "~/Documents"))
-      ("l" (dired "~/Documents"))
+      ("L" (dired "~/Documents"))
 
       ("q" nil))
 
