@@ -88,8 +88,14 @@
 (after! shx
   (shx-global-mode +1))  ; toggle shx-mode on globally
 
+
 (set-popup-rule! "^\\*shell.*" :side 'bottom :size 20 :slot 3 :select nil :quit nil :modeline t)
 
+;; Range config
+(set-popup-rule! "^\\*ranger" :ignore t)
+(after! ranger
+  ;; Override dired-mode so it uses deer
+  (add-hook! dired-mode #'ranger-override-dired-fn))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -170,9 +176,9 @@
       ("A" (find-file "~/Dropbox/org/4 Archives.org"))
 
       ("s" (+macos/reveal-in-finder "~/Dropbox"))
-      ("S" (dired "~/Documents"))
+      ("S" (ranger "~/Documents"))
       ("l" (+macos/reveal-in-finder "~/Documents"))
-      ("L" (dired "~/Documents"))
+      ("L" (ranger "~/Documents"))
 
       ("q" nil))
 
