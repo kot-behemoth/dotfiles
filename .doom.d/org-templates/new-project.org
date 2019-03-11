@@ -1,0 +1,23 @@
+DEADLINE: %^t
+* %^{Project name}
+:PROPERTIES:
+:STARTDATE: %u
+:END:
+%^{OUTCOME}p
+%^{AREA}p
+%?
+- [ ] Add project tags for context (e.g. work, personal)
+- [ ] List specific tasks
+- [ ] Schedule next actions from generated tasks
+- [ ] Create Dropbox folder if needed for storage; move files there
+  #+BEGIN_SRC emacs-lisp
+    (mkdir (concat "~/Dropbox/1 Projects/" (nth 4 (org-heading-components))))
+  #+END_SRC
+- [ ] Create [[https://drive.google.com/drive/u/0/folders/1UGyopdsoExR3VaxlxvS6niUqpjxByDVh][Google Drive]] folder if needed for collaboration; move documents there
+  #+BEGIN_SRC emacs-lisp
+    (mkdir (concat "~/Google Drive/1 Projects/" (nth 4 (org-heading-components))))
+  #+END_SRC
+
+  #+BEGIN_SRC emacs-lisp
+    (mkdir (concat "~/Google Drive Work/1 Projects/" (nth 4 (org-heading-components))))
+  #+END_SRC
