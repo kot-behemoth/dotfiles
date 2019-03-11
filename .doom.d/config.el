@@ -150,4 +150,31 @@
           ("w" "Review: Weekly Review" entry (file+olp+datetree "/tmp/reviews.org")
             (file "~/.doom.d/org-templates/weekly-review.org"))
           ("m" "Review: Monthly Review" entry (file+olp+datetree "/tmp/reviews.org")
-            (file "~/.doom.d/org-templates/monthly-review.org")))))
+            (file "~/.doom.d/org-templates/monthly-review.org"))))
+
+  (defhydra hydra-para (:color blue)
+      "
+      P.A.R.A. control panel (_q_uit)
+
+      ^Notes^             ^Storage^
+      ^-----^-------------^--^---------
+      _p_ Projects        _s_ Dropbox
+      _a_ Areas           _S_ Dropbox, dired
+      _r_ Resources       _l_ Local
+      _A_ Archives        _L_ Local, dired
+      "
+
+      ("p" (find-file "~/Dropbox/org/1 Projects.org"))
+      ("a" (find-file "~/Dropbox/org/2 Areas.org"))
+      ("r" (find-file "~/Dropbox/org/3 Resources.org"))
+      ("A" (find-file "~/Dropbox/org/4 Archives.org"))
+
+      ("s" (+macos/reveal-in-finder "~/Dropbox"))
+      ("S" (dired "~/Documents"))
+      ("l" (+macos/reveal-in-finder "~/Documents"))
+      ("l" (dired "~/Documents"))
+
+      ("q" nil))
+
+  (map! :leader
+    (:desc "P.A.R.A." :n "P" #'hydra-para/body)))
