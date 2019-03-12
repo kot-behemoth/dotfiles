@@ -129,8 +129,7 @@
 
 (when IS-MAC                               
   (setq doom-font (font-spec :family "Fira Code" :size 16))
-
-  (global-set-key (kbd "a-3") '(lambda () (interactive) (insert "#")))
+  (map! :i "M-3" (lambda! (insert "#")))
 
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
@@ -187,12 +186,14 @@
 
       ^Notes^             ^Storage^
       ^-----^-------------^--^---------
-      _p_ Projects        _s_ Dropbox
-      _a_ Areas           _S_ Dropbox, dired
-      _r_ Resources       _l_ Local
-      _A_ Archives        _L_ Local, dired
+       _t_ Tasks          _s_ Dropbox
+       _p_ Projects       _S_ Dropbox, dired
+       _a_ Areas          _l_ Local
+       _r_ Resources      _L_ Local, dired
+       _A_ Archives
       "
 
+      ("t" (find-file "~/Dropbox/org/tasks.org"))
       ("p" (find-file "~/Dropbox/org/1 Projects.org"))
       ("a" (find-file "~/Dropbox/org/2 Areas.org"))
       ("r" (find-file "~/Dropbox/org/3 Resources.org"))
