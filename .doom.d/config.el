@@ -92,6 +92,11 @@
 
 ;; Org-mode customisations
 (add-hook 'org-mode-hook (lambda! (display-line-numbers-mode 0)))
+(after! org
+  (setq-default
+   org-todo-keywords
+    '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "LATER(l)" "|" "DONE(d)"))))
+
 ;; FIXME: need to add :after (ox-clip shx)
 (map!
   :localleader
@@ -117,7 +122,7 @@
     :localleader
     :desc "Focus mode"
     :n "f" #'toggle-focus-mode))
-  
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -127,7 +132,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when IS-MAC                               
+(when IS-MAC
   (setq doom-font (font-spec :family "Fira Code" :size 16))
   (map! :i "M-3" (lambda! (insert "#")))
 
@@ -183,7 +188,6 @@
   (defhydra hydra-para (:color blue)
       "
       P.A.R.A. control panel (_q_uit)
-
       ^Notes^             ^Storage^
       ^-----^-------------^--^---------
        _t_ Tasks          _s_ Dropbox
@@ -209,3 +213,7 @@
   (map! :leader
     (:desc "P.A.R.A." :n "P" #'hydra-para/body)))
 
+
+                   ;; Modules
+(when IS-WINDOWS
+  (load! "+work")) ;; All work-related, Windows-specific stuff
