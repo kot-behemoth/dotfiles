@@ -1,5 +1,5 @@
-DEADLINE: %^t
 * %^{Project name}
+DEADLINE: %^t
 :PROPERTIES:
 :STARTDATE: %u
 :END:

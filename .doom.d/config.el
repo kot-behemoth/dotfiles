@@ -175,10 +175,10 @@
       ("people.org" :maxlevel . 1)))
 
   (setq org-capture-templates
-        '(("t" "Task" entry (file "~/org/inbox.org"))
-          "* TODO %?\n"
+        '(("t" "Task" entry (file "~/Dropbox/org/inbox.org")
+           "* TODO %?\n")
           ("p" "Project" entry
-            (file "~/org/1 Projects.org")
+            (file "~/Dropbox/org/1 Projects.org")
             (file "~/.doom.d/org-templates/new-project.org"))
           ("w" "Review: Weekly Review" entry (file+olp+datetree "/tmp/reviews.org")
             (file "~/.doom.d/org-templates/weekly-review.org"))
