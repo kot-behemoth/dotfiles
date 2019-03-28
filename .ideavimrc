@@ -18,3 +18,9 @@ nmap <leader>j <c-w>j
 nmap <leader>c :action ActivatePythonConsoleToolWindow<CR>
 " - visual mode - send to console, ,e
 vmap <leader>e :action ExecuteInPyConsoleAction<CR>
+
+" go to All
+nmap <leader>g :action GoToMenu<CR>
+
+nmap <a-h> :action VimMotionPreviousTab<CR>
+nmap <a-l> :action VimMotionNextTab<CR>
