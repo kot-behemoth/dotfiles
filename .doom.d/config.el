@@ -138,6 +138,7 @@
                         (concat "export PS1=\"\033[33m" buffer "\033[0m:\033[35m\\W\033[0m>\""))))
 
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Mac-specific config below
@@ -196,37 +197,11 @@
           ("w" "Review: Weekly Review" entry (file+olp+datetree "/tmp/reviews.org")
             (file "~/.doom.d/org-templates/weekly-review.org"))
           ("m" "Review: Monthly Review" entry (file+olp+datetree "/tmp/reviews.org")
-            (file "~/.doom.d/org-templates/monthly-review.org"))))
-
-  (defhydra hydra-para (:color blue)
-      "
-      P.A.R.A. control panel (_q_uit)
-      ^Notes^             ^Storage^
-      ^-----^-------------^--^---------
-       _t_ Tasks          _s_ Dropbox
-       _p_ Projects       _S_ Dropbox, dired
-       _a_ Areas          _l_ Local
-       _r_ Resources      _L_ Local, dired
-       _A_ Archives
-      "
-
-      ("t" (find-file "~/Dropbox/org/tasks.org"))
-      ("p" (find-file "~/Dropbox/org/1 Projects.org"))
-      ("a" (find-file "~/Dropbox/org/2 Areas.org"))
-      ("r" (find-file "~/Dropbox/org/3 Resources.org"))
-      ("A" (find-file "~/Dropbox/org/4 Archives.org"))
-
-      ("s" (+macos/reveal-in-finder "~/Dropbox"))
-      ("S" (ranger "~/Documents"))
-      ("l" (+macos/reveal-in-finder "~/Documents"))
-      ("L" (ranger "~/Documents"))
-
-      ("q" nil))
-
-  (map! :leader
-    (:desc "P.A.R.A." :n "P" #'hydra-para/body)))
+            (file "~/.doom.d/org-templates/monthly-review.org")))))
 
 
-                   ;; Modules
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Modules
+(load! "+hydras")  ;; All hydras
 (when IS-WINDOWS
   (load! "+work")) ;; All work-related, Windows-specific stuff
