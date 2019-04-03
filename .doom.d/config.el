@@ -123,6 +123,19 @@
     :desc "Focus mode"
     :n "f" #'toggle-focus-mode))
 
+;; From https://www.quora.com/What-does-Tikhon-Jelviss-Emacs-setup-look-like
+;; example: (easy-shell "/vagrant@localhost#2222:/vagrant/")
+(defun easy-shell (buffer)
+  "Opens a new shell buffer where the given buffer is located."
+  (interactive "sBuffer: ")
+  (pop-to-buffer (concat "*" buffer "*"))
+  (unless (eq major-mode 'shell-mode)
+    (dired buffer)
+    (shell buffer)
+    (sleep-for 0 200)
+    (delete-region (point-min) (point-max))
+    (comint-simple-send (get-buffer-process (current-buffer))
+                        (concat "export PS1=\"\033[33m" buffer "\033[0m:\033[35m\\W\033[0m>\""))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -175,10 +188,10 @@
       ("people.org" :maxlevel . 1)))
 
   (setq org-capture-templates
-        '(("t" "Task" entry (file "~/Dropbox/org/inbox.org")
-           "* TODO %?\n")
+        '(("t" "Task" entry (file "~/org/inbox.org"))
+          "* TODO %?\n"
           ("p" "Project" entry
-            (file "~/Dropbox/org/1 Projects.org")
+            (file "~/org/1 Projects.org")
             (file "~/.doom.d/org-templates/new-project.org"))
           ("w" "Review: Weekly Review" entry (file+olp+datetree "/tmp/reviews.org")
             (file "~/.doom.d/org-templates/weekly-review.org"))
