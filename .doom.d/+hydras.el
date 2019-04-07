@@ -55,6 +55,12 @@ T - tag prefix
   ("." nil :color blue))
 
 ;; (define-key dired-mode-map "." 'hydra-dired/body)
+;; 
+(map!
+  :localleader
+  ;;:map dired-mode-map ranger-mode-map
+  :map ranger-mode-map
+  "," #'hydra-dired/body)
 
 ;; Hydra for org agenda (graciously taken from Spacemacs)
 (defhydra hydra-org-agenda (:pre (setq which-key-inhibit t)
@@ -136,7 +142,14 @@ _vr_ reset      ^^                       ^^                 ^^
   ("." org-agenda-goto-today)
   ("gr" org-agenda-redo))
 
+(map!
+  :localleader
+  :map org-mode-map
+  "," #'hydra-org-agenda/body)
+
+
 (defhydra hydra-lsp (:exit t :hint nil)
+
   "
  Buffer^^               Server^^                   Symbol
 -------------------------------------------------------------------------------------
@@ -173,7 +186,6 @@ Demote/Promote    C-c C-x    _l_: promote       _r_: demote     _u_: move up    
 Links, footnotes  C-c C-a    _L_: link          _U_: uri        _F_: footnote     _W_: wiki-link      _R_: reference
 
 "
-
 
   ("s" markdown-insert-bold)
   ("e" markdown-insert-italic)

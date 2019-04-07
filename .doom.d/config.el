@@ -79,16 +79,14 @@
 
 ;; FIXME doesn't necessarily work on macos
 (after! shx
-  (shx-global-mode +1))  ; toggle shx-mode on globally
-
+  (shx-global-mode t))  ; toggle shx-mode on globally
 
 (set-popup-rule! "^\\*shell.*" :side 'bottom :size 20 :slot 3 :select nil :quit nil :modeline t)
 
 ;; Range config
-(set-popup-rule! "^\\*ranger" :ignore t)
 (after! ranger
   ;; Override dired-mode so it uses deer
-  (add-hook! dired-mode #'ranger-override-dired-fn))
+  (setq ranger-deer-show-details t))
 
 ;; Org-mode customisations
 (add-hook 'org-mode-hook (lambda! (display-line-numbers-mode 0)))
@@ -125,6 +123,7 @@
 
 ;; From https://www.quora.com/What-does-Tikhon-Jelviss-Emacs-setup-look-like
 ;; example: (easy-shell "/vagrant@localhost#2222:/vagrant/")
+;; TODO: needs configuring
 (defun easy-shell (buffer)
   "Opens a new shell buffer where the given buffer is located."
   (interactive "sBuffer: ")
@@ -179,6 +178,7 @@
   ;; Org config
 
   (setq org-directory "~/Dropbox/org")
+  (setq org-agenda-files '("~/Dropbox/org/tasks.org"))
   (setq org-archive-location (concat org-directory "/archive.org::* Projects"))
   ; http://doc.endlessparentheses.com/Var/org-archive-location.html
   (setq org-refile-targets
@@ -192,7 +192,8 @@
         '(("t" "Task" entry (file "~/org/inbox.org"))
           "* TODO %?\n"
           ("p" "Project" entry
-            (file "~/org/1 Projects.org")
+            ; tasks, because the template is very tasks-focused
+            (file "~/org/tasks.org")
             (file "~/.doom.d/org-templates/new-project.org"))
           ("w" "Review: Weekly Review" entry (file+olp+datetree "/tmp/reviews.org")
             (file "~/.doom.d/org-templates/weekly-review.org"))
