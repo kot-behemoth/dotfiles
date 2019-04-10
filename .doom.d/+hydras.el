@@ -4,7 +4,6 @@
 ;; Find more spacemacs ones here: https://github.com/syl20bnr/spacemacs/search?p=1&q=define-transient-state&unscoped_q=define-transient-state
 ;;
 ;; Colours
-
 ;; |----------+-----------+-----------------------+-----------------|
 ;; | Body     | Head      | Executing NON-HEADS   | Executing HEADS |
 ;; | Color    | Inherited |                       |                 |
@@ -16,6 +15,20 @@
 ;; | red      | red       | Allow and Quit        | Continue        |
 ;; | blue     | blue      | Allow and Quit        | Quit            |
 ;; |----------+-----------+-----------------------+-----------------|
+;;
+;; Ideas - Org-mode hydra
+;;   - create table
+;;   - narrow/widen
+;;   - attach
+;;   - archive using C-c C-x A
+;;   - schedule/deadline
+;;   - insert link via org-cliplink
+;;   - pretty-copy via ox-clip-formatted-copy
+;;   - todo status
+;;   - insert structured templates
+;;   - insert date+time using calendar
+;;   - insert link
+
 
 ;; Dired
 (defhydra hydra-dired (:hint nil :color pink)
