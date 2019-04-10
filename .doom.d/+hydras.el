@@ -1,6 +1,21 @@
 ;;; ~/.doom.d/+hydras.el -*- lexical-binding: t; -*-
 
 ;; All based on https://github.com/abo-abo/hydra/wiki
+;; Find more spacemacs ones here: https://github.com/syl20bnr/spacemacs/search?p=1&q=define-transient-state&unscoped_q=define-transient-state
+;;
+;; Colours
+
+;; |----------+-----------+-----------------------+-----------------|
+;; | Body     | Head      | Executing NON-HEADS   | Executing HEADS |
+;; | Color    | Inherited |                       |                 |
+;; |          | Color     |                       |                 |
+;; |----------+-----------+-----------------------+-----------------|
+;; | amaranth | red       | Disallow and Continue | Continue        |
+;; | teal     | blue      | Disallow and Continue | Quit            |
+;; | pink     | red       | Allow and Continue    | Continue        |
+;; | red      | red       | Allow and Quit        | Continue        |
+;; | blue     | blue      | Allow and Quit        | Quit            |
+;; |----------+-----------+-----------------------+-----------------|
 
 ;; Dired
 (defhydra hydra-dired (:hint nil :color pink)
@@ -55,7 +70,7 @@ T - tag prefix
   ("." nil :color blue))
 
 ;; (define-key dired-mode-map "." 'hydra-dired/body)
-;; 
+;;
 (map!
   :localleader
   ;;:map dired-mode-map ranger-mode-map
@@ -241,3 +256,30 @@ Links, footnotes  C-c C-a    _L_: link          _U_: uri        _F_: footnote   
 
 (map! :leader
   (:desc "P.A.R.A." :n "P" #'hydra-para/body))
+
+;; Git-timemachine
+(defhydra hydra-git-timemachine          
+    (:color red
+     :body-pre (unless (bound-and-true-p git-timemachine-mode)
+                 (call-interactively 'git-timemachine))
+     :before-exit (when (bound-and-true-p git-timemachine-mode)
+                     (git-timemachine-quit))
+     :foreign-keys run)
+    "
+    Git Timemachine Transient State
+
+    [_p_/_N_] previous [_n_] next [_c_] current [_F_] fuzzy find [_Y_] copy hash [_q_] quit
+    "
+
+    ("c" (git-timemachine-show-current-revision))
+    ;("g" (git-timemachine-show-nth-revision))
+    ("p" (git-timemachine-show-previous-revision))
+    ("n" (git-timemachine-show-next-revision))
+    ("N" (git-timemachine-show-previous-revision))
+    ("Y" (git-timemachine-kill-revision))
+    ("F" (git-timemachine-show-revision-fuzzy))
+    ("q" nil :exit t))
+
+(map! :leader
+  (:prefix "g"
+    (:desc "Git time hydra" :n "T" #'hydra-git-timemachine/body)))
