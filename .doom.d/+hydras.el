@@ -298,3 +298,109 @@ _vr_ reset      ^^                       ^^                 ^^
 (map! :leader
   (:prefix "g"
     (:desc "Git time hydra" :n "T" #'hydra-git-timemachine/body)))
+
+
+(defun hydra-move-splitter-left (arg)
+  "Move window splitter left."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'right))
+      (shrink-window-horizontally arg)
+    (enlarge-window-horizontally arg)))
+
+(defun hydra-move-splitter-right (arg)
+  "Move window splitter right."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'right))
+      (enlarge-window-horizontally arg)
+    (shrink-window-horizontally arg)))
+
+(defun hydra-move-splitter-up (arg)
+  "Move window splitter up."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'up))
+      (enlarge-window arg)
+    (shrink-window arg)))
+
+(defun hydra-move-splitter-down (arg)
+  "Move window splitter down."
+  (interactive "p")
+  (if (let ((windmove-wrap-around))
+        (windmove-find-other-window 'up))
+      (shrink-window arg)
+    (enlarge-window arg)))
+
+(defhydra hydra-window ()
+   "
+Movement^^       ^Split^         ^Resize^
+-----------------------------------------------
+_h_ ?            _v_ertical       _C-h_ X?
+_j_ ?            _x_ horizontal   _C-j_ X?
+_k_ ?            _z_ undo         _C-k_ X?
+_l_ ?            _Z_ reset        _C-l_ X?
+_F_ollow         _D_lt Other      _i_ enlargen
+_SPC_ cancel     _o_nly this      _I_ zoom
+^^               _d_elete         _b_alance
+"
+   ("h" +evil/window-move-left)
+   ("j" +evil/window-move-down)
+   ("k" +evil/window-move-up)
+   ("l" +evil/window-move-right)
+
+   ;; ("H" evil-window-decrease-width)
+   ;; ("J" evil-window-decrease-height)
+   ;; ("K" evil-window-increase-height)
+   ;; ("L" evil-window-increase-width)
+
+   ("C-h" hydra-move-splitter-left)
+   ("C-j" hydra-move-splitter-down)
+   ("C-k" hydra-move-splitter-up)
+   ("C-l" hydra-move-splitter-right)
+
+   ("b" balance-windows)
+   ("F" follow-mode)
+   ;; ("b" helm-mini)
+   ;; ("f" helm-find-files)
+   ;; ("a" (lambda ()
+   ;;        (interactive)
+   ;;        (ace-window 1)
+   ;;        (add-hook 'ace-window-end-once-hook
+   ;;                  'hydra-window/body)))
+   ;; ("s" (lambda ()
+   ;;        (interactive)
+   ;;        (ace-window 4)
+   ;;        (add-hook 'ace-window-end-once-hook
+   ;;                  'hydra-window/body)))
+   ;; ("S" save-buffer)
+   ("d" delete-window)
+
+   ("v" (lambda ()
+          (interactive)
+          (split-window-right)
+          (windmove-right)))
+
+   ("x" (lambda ()
+          (interactive)
+          (split-window-below)
+          (windmove-down)))
+
+   ("D" (lambda ()
+          (interactive)
+          (ace-window 16)
+          (add-hook 'ace-window-end-once-hook
+                    'hydra-window/body)))
+
+   ("o" delete-other-windows)
+   ("i" doom/window-enlargen)
+   ("I" doom/window-zoom)
+   ("z" (progn
+          (winner-undo)
+          (setq this-command 'winner-undo)))
+
+   ("Z" winner-redo)
+   ("SPC" nil))
+
+(map! :leader
+  (:desc "Window management hydra" :n "W" #'hydra-window/body))
