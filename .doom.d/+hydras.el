@@ -393,8 +393,8 @@ _SPC_ cancel     _o_nly this      _I_ zoom
                     'hydra-window/body)))
 
    ("o" delete-other-windows)
-   ("i" doom/window-enlargen)
-   ("I" doom/window-zoom)
+   ("i" doom/window-enlargen :color blue)
+   ("I" doom/window-zoom :color blue)
    ("z" (progn
           (winner-undo)
           (setq this-command 'winner-undo)))
