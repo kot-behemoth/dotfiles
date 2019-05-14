@@ -2,17 +2,7 @@
 ;;
 ;; ~/.doom.d/init.el file is loaded before any modules are!
 
-(doom! :feature
-       ;;debugger          ; FIXME stepping through code, to help you add bugs
-       eval              ; run code, run (also, repls)
-       (evil +everywhere); come to the dark side, we have cookies
-       (lookup           ; helps you navigate your code and documentation
-        +docsets)        ; ...or in Dash docsets locally
-       ;snippets          ; my elves. They type so I don't have to
-       file-templates    ; auto-snippets for empty files
-       workspaces        ; tab emulation, persistence & separate workspaces
-
-       :completion
+(doom! :completion
        company           ; the ultimate code completion backend
        helm              ; the *other* search engine for love and life
        ;;ido              ; the other *other* search engine...
@@ -23,17 +13,18 @@
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       evil-goggles      ; display visual hints when editing in evil
        ;;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
        ;;neotree           ; a project drawer, like NERDTree for vim
+       ophints           ; highlight the region an operation acts on
        treemacs          ; a project drawer, like neotree but cooler
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
        pretty-code       ; replace bits of code with pretty symbols
+       workspaces        ; tab emulation, persistence & separate workspaces
        ;;tabbar            ; FIXME an (incomplete) tab bar for Emacs
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
@@ -41,7 +32,9 @@
        window-select     ; visually switch windows
 
        :editor
-       fold              ; (nigh) universal code folding
+       ;fold              ; (nigh) universal code folding
+       (evil +everywhere); come to the dark side, we have cookies
+       file-templates ; auto-snippets for empty files
        ;;(format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who dont like vim
        ;;multiple-cursors  ; editing in many places at once
@@ -52,7 +45,6 @@
        (dired            ; making dired pretty [functional]
         +ranger          ; bringing the goodness of ranger to dired
         +icons)           ; colorful icons for dired-mode
-
        electric          ; smarter, keyword-based electric-indent
        eshell            ; a consistent, cross-platform shell (WIP)
        imenu             ; an imenu sidebar and searchable code index
@@ -63,6 +55,9 @@
        ;;ansible
        ;;docker
        ;;editorconfig      ; let someone else argue about tabs vs spaces
+       (lookup           ; helps you navigate your code and documentation
+        +docsets)        ; ...or in Dash docsets locally
+       eval              ; run code, run (also, repls)
        ein               ; tame Jupyter notebooks with emacs
        flycheck          ; tasing you for every semicolon you forget
        ;;flyspell          ; tasing you for misspelling mispelling
@@ -160,5 +155,3 @@
        ;; library, and additional ex commands for evil-mode. Use it as a
        ;; reference for your own modules.
        (default +bindings +evil-commands))
-
-
