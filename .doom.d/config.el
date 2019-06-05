@@ -18,12 +18,11 @@
    "C-l"      #'helm-execute-persistent-action
    "C-h"      #'helm-find-files-up-one-level)
 
-  ;; FIXME: doesn't work
   ;; Add easy way to find
   (:map override
    "M-f" #'swiper-helm)  ;; can also be called via SPC / b
 
-  (:when (featurep! :feature evil)
+  (:when (featurep! :editor evil)
    :n "j" #'evil-next-visual-line
    :n "k" #'evil-previous-visual-line)
 
@@ -136,7 +135,11 @@
     (comint-simple-send (get-buffer-process (current-buffer))
                         (concat "export PS1=\"\033[33m" buffer "\033[0m:\033[35m\\W\033[0m>\""))))
 
+;;;;;;;;;;;;;;;;
+;; Docker config
+;;;;;;;;;;;;;;;;
 
+(setq docker-container-shell-file-name "/bin/bash")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
