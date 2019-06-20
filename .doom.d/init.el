@@ -20,7 +20,8 @@
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
        pretty-code       ; replace bits of code with pretty symbols
-       workspaces        ; tab emulation, persistence & separate workspaces
+       (workspaces        ; tab emulation, persistence & separate workspaces
+        +switch-window)
        ;;tabbar            ; FIXME an (incomplete) tab bar for Emacs
        ;;unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
@@ -56,7 +57,7 @@
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
        eval              ; run code, run (also, repls)
-       ein               ; tame Jupyter notebooks with emacs
+       ;ein               ; tame Jupyter notebooks with emacs
        flycheck          ; tasing you for every semicolon you forget
        ;;flyspell          ; tasing you for misspelling mispelling
        ;;gist              ; interacting with github gists

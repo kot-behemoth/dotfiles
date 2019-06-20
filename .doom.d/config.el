@@ -57,6 +57,10 @@
    :desc "Deer"    "r"  #'deer
    :desc "Ranger"  "R"  #'ranger))
 
+(map!
+  :leader
+  (:desc "Kill ring" :n "K" #'helm-show-kill-ring))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package config
