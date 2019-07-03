@@ -9,3 +9,4 @@
 (package! shx)
 (package! org-cliplink)
 (package! ox-clip)
+(package! direnv)

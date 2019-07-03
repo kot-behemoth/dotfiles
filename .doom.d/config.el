@@ -61,7 +61,6 @@
   :leader
   (:desc "Kill ring" :n "K" #'helm-show-kill-ring))
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Package config
 (after! ein
@@ -80,9 +79,15 @@
 (after! evil-escape
   (setq evil-escape-key-sequence "ii"))
 
+(map!
+  :after lsp
+  :leader
+  (:prefix ("c" . "+code")
+    :desc "LSP"
+    :n "l" #'hydra-lsp/body))
+
 ;; FIXME doesn't necessarily work on macos
-(after! shx
-  (shx-global-mode t))  ; toggle shx-mode on globally
+(shx-global-mode t)  ; toggle shx-mode on globally
 
 (set-popup-rule! "^\\*shell.*" :side 'bottom :size 20 :slot 3 :select nil :quit nil :modeline t)
 
@@ -90,6 +95,17 @@
 (after! ranger
   ;; Override dired-mode so it uses deer
   (setq ranger-deer-show-details t))
+
+;; Direnv
+(use-package direnv
+ :config
+ (direnv-mode))
+
+;; Fix EDITOR handling for shells
+;; (after! with-editor
+(add-hook 'shell-mode-hook  'with-editor-export-editor)
+(add-hook 'term-exec-hook   'with-editor-export-editor)
+(add-hook 'eshell-mode-hook 'with-editor-export-editor)
 
 ;; Org-mode customisations
 (add-hook 'org-mode-hook (lambda! (display-line-numbers-mode 0)))
@@ -124,20 +140,45 @@
     :desc "Focus mode"
     :n "f" #'toggle-focus-mode))
 
-;; From https://www.quora.com/What-does-Tikhon-Jelviss-Emacs-setup-look-like
-;; example: (easy-shell "/vagrant@localhost#2222:/vagrant/")
-;; TODO: needs configuring
-(defun easy-shell (buffer)
-  "Opens a new shell buffer where the given buffer is located."
-  (interactive "sBuffer: ")
-  (pop-to-buffer (concat "*" buffer "*"))
-  (unless (eq major-mode 'shell-mode)
-    (dired buffer)
-    (shell buffer)
-    (sleep-for 0 200)
-    (delete-region (point-min) (point-max))
-    (comint-simple-send (get-buffer-process (current-buffer))
-                        (concat "export PS1=\"\033[33m" buffer "\033[0m:\033[35m\\W\033[0m>\""))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Tramp speedups
+(setq remote-file-name-inhibit-cache nil)
+(setq vc-ignore-dir-regexp
+      (format "%s\\|%s"
+                    vc-ignore-dir-regexp
+                    tramp-file-name-regexp))
+(setq tramp-verbose 1)
+
+(defadvice projectile-on (around exlude-tramp activate)
+  "This should disable projectile when visiting a remote file"
+  (unless  (--any? (and it (file-remote-p it))
+                   (list
+                    (buffer-file-name)
+                    list-buffers-directory
+                    default-directory
+                    dired-directory))
+    ad-do-it))
+
+(setq projectile-mode-line "Projectile")
+
+
+;;;;;;;;;;;;;;;;;;
+;; Selecting deleted buffer fix
+;; From https://github.com/hlissner/doom-emacs/issues/1525
+(after! persp-mode
+  (persp-def-buffer-save/load
+   :tag-symbol 'def-indirect-buffer
+   :predicate #'buffer-base-buffer
+   :save-function (lambda (buf tag vars)
+                    (list tag (buffer-name buf) vars
+                          (buffer-name (buffer-base-buffer buf))))
+   :load-function (lambda (savelist &rest _rest)
+                    (cl-destructuring-bind (buf-name _vars base-buf-name &rest _)
+                        (cdr savelist)
+                      (push (cons buf-name base-buf-name)
+                            +workspaces--indirect-buffers-to-restore)
+                      nil))))
 
 ;;;;;;;;;;;;;;;;
 ;; Docker config
