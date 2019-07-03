@@ -13,7 +13,6 @@ ln -s dotfiles/.doom.d .doom.d
 
 ```bash
 ln -s ~/dotfiles/.doom.d ~/.doom.d
-ln -s ~/dotfiles/.eshell ~/.eshell
 ln -s ~/dotfiles/.direnvrc ~/.direnvrc
 
 # legacy
