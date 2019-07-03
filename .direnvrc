@@ -1,4 +1,5 @@
-use_docker-machine(){
+# From https://github.com/direnv/direnv/wiki/Docker-Machine
+use_docker-machine() {
   local env=${1:-default}
   echo Docker machine: $env
   local machine_cmd=$(docker-machine env --shell bash $env)
@@ -8,7 +9,8 @@ use_docker-machine(){
 
 # From https://github.com/direnv/direnv/wiki/Python#anaconda
 layout_anaconda() {
-  local ANACONDA_HOME="${HOME}/miniconda3/"
+  # local ANACONDA_HOME="${HOME}/miniconda3/"
+  local ANACONDA_HOME=/usr/local/miniconda3
   PATH_add "$ANACONDA_HOME"/bin
 
   if [ -n "$1" ]; then

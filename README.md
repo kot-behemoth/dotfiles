@@ -1,13 +1,4 @@
-# Prerequisites
-
-
 # Installation
-
-## Installing Doom-emacs
-
-```bash
-ln -s dotfiles/.doom.d .doom.d
-```
 
 ## Linking up the files
 
@@ -20,6 +11,8 @@ ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.zpreztorc ~/.zpreztorc
 ln -s ~/dotfiles/.vimrc ~/.vimrc
 ```
+
+# Legacy
 
 ## Input font
 
