@@ -1,7 +1,7 @@
 ;;; +shell.el -*- lexical-binding: t; -*-
 
 ;; FIXME doesn't necessarily work on macos
-(shx-global-mode t)  ; toggle shx-mode on globally
+(shx-global-mode 1)  ; toggle shx-mode on globally
 
 ;; Fix EDITOR handling for shells
 (add-hook 'shell-mode-hook  'with-editor-export-editor)
@@ -14,4 +14,9 @@
     "C-j" #'comint-next-input
     "M-k" #'comint-previous-prompt
     "M-j" #'comint-next-prompt
-    "C-l" #'helm-comint-input-ring))
+    "C-l" #'helm-comint-input-ring)
+
+  :leader
+  (:prefix "o"
+   :desc "Shell toggle" "s"  #'+shell/toggle
+   :desc "Shell here" "S"  #'+shell/here))

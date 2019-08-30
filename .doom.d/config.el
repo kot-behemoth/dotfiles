@@ -46,10 +46,6 @@
 (after! evil-escape
   (setq evil-escape-key-sequence "ii"))
 
-;; Direnv
-(use-package direnv
- :config
- (direnv-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modules

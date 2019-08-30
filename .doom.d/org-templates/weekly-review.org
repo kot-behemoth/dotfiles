@@ -9,14 +9,6 @@
   - [ ] Voice Mail
   - [ ] Email Inboxes
 #+BEGIN_SRC emacs-lisp
-(progn
-    (browse-url "https://mail.google.com/mail/u/0/#inbox")
-    (browse-url "https://mail.google.com/mail/u/1/#inbox")
-    (browse-url "https://mail.google.com/mail/u/2/#inbox"))
-#+END_SRC
-  - [ ] Kindle highlights
-  - [ ] Evernote Inbox
-#+BEGIN_SRC emacs-lisp
   (open-evernote-osx)
 #+END_SRC
   - [ ] Browser Tabs

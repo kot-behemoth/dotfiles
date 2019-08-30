@@ -40,19 +40,20 @@
 
 ;; Focus-mode writing
 (after! olivetti
-  (setq-default olivetti-body-width 120
-                olivetti-hide-mode-line t)
+  (setq-default olivetti-body-width 80)
 
   (defun toggle-focus-mode ()
     (interactive)
-    (doom/window-zoom)
+    (doom/window-maximize-buffer)
     (if (bound-and-true-p olivetti-mode)
       (olivetti-mode 0)
       (olivetti-mode 1))))
 
 (map!
+  :map org-mode-map :desc "widen" :n "z w" #'widen
+
   :after olivetti
-  (:map org-mode-map
-    :localleader
-    :desc "Focus mode"
-    :n "f" #'toggle-focus-mode))
+  :map text-mode-map
+  :localleader
+  :desc "Focus mode"
+  :n "F" #'toggle-focus-mode)

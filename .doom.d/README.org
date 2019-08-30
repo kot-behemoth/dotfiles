@@ -1,8 +1,15 @@
+** Things to integrate
+
+- [[https://gitlab.com/jjzmajic/hercules.el/tree/aace3409bc4d78fec3006b2906eb2ae99cadd9f4][Hercules]] - auto-generated hydras
+- [[https://github.com/darksmile/cheatsheet][Cheatsheet]] - create your own cheatsheet for commands
+- [[https://github.com/alphapapa/org-rifle][org-rifle]] - good search through all org files
+
 ** Good articles
 
 - Doom Emacs Workflows https://noelwelsh.com/posts/2019-01-10-doom-emacs.html
 
 ** Default keybindings
+
   https://github.com/hlissner/doom-emacs/blob/develop/modules/config/default/+evil-bindings.el
   
 ** map! macro
@@ -49,6 +56,7 @@ Example
 #+end_src
   
 ** Naming conventions
+
 + `doom/abc` A public, interactive command, designed to be used via `M-x` or a
   keybinding.
 + `doom:abc` A public evil operator, motion or command.
@@ -67,4 +75,5 @@ Example
 + `=abc` An interactive command that invokes an app module.
 
 ** Spacemacs-like keys
+
 https://github.com/jsmestad/dfiles/blob/master/.doom.d/%2Bbindings.el#L496-L854

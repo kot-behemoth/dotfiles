@@ -9,5 +9,4 @@
 (package! shx)
 (package! org-cliplink)
 (package! ox-clip)
-(package! direnv)
-(package! better-shell)
+(package! olivetti)
