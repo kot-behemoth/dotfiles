@@ -3,6 +3,8 @@
 - [[https://gitlab.com/jjzmajic/hercules.el/tree/aace3409bc4d78fec3006b2906eb2ae99cadd9f4][Hercules]] - auto-generated hydras
 - [[https://github.com/darksmile/cheatsheet][Cheatsheet]] - create your own cheatsheet for commands
 - [[https://github.com/alphapapa/org-rifle][org-rifle]] - good search through all org files
+- [[https://arte.ebrahimi.org/blog/named-eshell-buffers-part-2-decoupling-from-ivy][Named eshell buffers]]
+- [[https://gist.github.com/ralt/a36288cd748ce185b26237e6b85b27bb][eshell/tramp optimisations]]
 
 ** Good articles
 
