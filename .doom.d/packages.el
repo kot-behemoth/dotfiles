@@ -10,3 +10,6 @@
 (package! org-cliplink)
 (package! ox-clip)
 (package! olivetti)
+(package! helm-org-rifle)
+(package! cheatsheet)
+(package! hercules)

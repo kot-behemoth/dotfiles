@@ -60,6 +60,7 @@
 (load! "+ranger")
 (load! "+shell")
 (load! "+tramp")
+(load! "+cheatsheet")
 
 (when IS-WINDOWS
   (load! "+work") ;; All work-related, Windows-specific stuff
