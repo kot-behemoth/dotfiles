@@ -57,3 +57,13 @@
   :localleader
   :desc "Focus mode"
   :n "F" #'toggle-focus-mode)
+
+(map!
+  :map org-mode-map
+  :localleader
+
+  :desc "org-refile"
+  :n "R" #'org-refile
+
+  :desc "org-rifle"
+  :n "r" #'helm-org-rifle-org-directory)
