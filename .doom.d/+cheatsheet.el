@@ -16,3 +16,4 @@
   (:desc "help" :prefix "h"
    :desc "Cheatsheet" :n "c" #'cheatsheet-show))
 
+(set-popup-rule! "^\\*cheatsheet*" :side 'bottom :size 50 :slot 3)
