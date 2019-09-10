@@ -22,8 +22,8 @@
  :transient t)
 
 (map!
-  :localleader
   :map ranger-mode-map
+  :localleader
   "," #'ranger-hydra-show)
 
 (hercules-def
@@ -32,8 +32,8 @@
  :transient t)
 
 (map!
-  :localleader
   :map org-mode-map
+  :localleader
   "," #'org-mode-hydra-show)
 
 (hercules-def
@@ -42,8 +42,8 @@
  :transient t)
 
 (map!
-  :localleader
   :map markdown-mode-map
+  :localleader
   "," #'markdown-mode-hydra-show)
 
 
