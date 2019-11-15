@@ -20,7 +20,7 @@
   (popup            ; tame sudden yet inevitable temporary windows
     +all             ; catch all popups that start with an asterix
     +defaults)       ; default popup rules
-  pretty-code       ; replace bits of code with pretty symbols
+  ;;pretty-code       ; replace bits of code with pretty symbols
   (workspaces        ; tab emulation, persistence & separate workspaces
     +switch-window)
   ;;tabbar            ; FIXME an (incomplete) tab bar for Emacs
@@ -41,16 +41,17 @@
 
   :emacs
   (dired            ; making dired pretty [functional]
-    +ranger          ; bringing the goodness of ranger to dired
+                                        ; +ranger          ; bringing the goodness of ranger to dired
     +icons)           ; colorful icons for dired-mode
   electric          ; smarter, keyword-based electric-indent
+  ibuffer           ; interactive buffer management
   vc                ; version-control and Emacs, sitting in a tree
 
   :term
   eshell            ; a consistent, cross-platform shell (WIP)
   shell             ; a terminal REPL for Emacs
   ;;term              ; terminals in Emacs
-  ;;vterm             ; another terminals in Emacs
+  vterm             ; another terminals in Emacs
 
   :tools
   ;;ansible
@@ -59,8 +60,8 @@
   ;;editorconfig      ; let someone else argue about tabs vs spaces
   (lookup           ; helps you navigate your code and documentation
     +docsets)        ; ...or in Dash docsets locally
-  eval              ; run code, run (also, repls)
-  ;ein               ; tame Jupyter notebooks with emacs
+  (eval +overlay)    ; run code, run (also, repls)
+                                        ;ein               ; tame Jupyter notebooks with emacs
   flycheck          ; tasing you for every semicolon you forget
   ;;flyspell          ; tasing you for misspelling mispelling
   ;;gist              ; interacting with github gists
@@ -73,7 +74,7 @@
   prodigy           ; FIXME managing external services & code builders
   ;;rgb               ; creating color strings
   terraform         ; infrastructure as code
-  ;;tmux              ; an API for interacting with tmux
+  tmux              ; an API for interacting with tmux
   ;;upload            ; map local to remote projects via ssh/ftp
   ;;wakatime
 
@@ -101,7 +102,7 @@
   ;;latex             ; writing papers in Emacs has never been so fun
   ;;ledger            ; an accounting system in Emacs
   ;;lua               ; one-based indices? one-based indices
-                                        ;markdown          ; writing docs for people to ignore
+  markdown            ; writing docs for people to ignore
   ;;nim               ; python + lisp at the speed of c
   ;;nix               ; I hereby declare "nix geht mehr!"
   ;;ocaml             ; an objective camel
@@ -116,8 +117,8 @@
   ;;plantuml          ; diagrams for confusing people more
   ;;purescript        ; javascript, but functional
   (python
-    ;; +conda
-    +pyvenv
+    +conda
+    +pyenv
     +lsp)             ; beautiful is better than ugly
   ;;qt                ; the 'cutest' gui framework ever
   ;;racket            ; a DSL for DSLs
@@ -125,10 +126,10 @@
   ;;ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
   ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
   ;;scala             ; java, but good
-  sh                  ; she sells (ba|z|fi)sh shells on the C xor
+  (sh +lsp)           ; she sells (ba|z|fi)sh shells on the C xor
   ;;solidity          ; do you need a blockchain? No.
   ;;swift             ; who asked for emoji variables?
-  web                 ; the tubes
+  (web +lsp)          ; the tubes
   ;;vala              ; GObjective-C
 
   ;; Applications are complex and opinionated modules that transform Emacs
@@ -160,7 +161,7 @@
  ;; If there is more than one, they won't work right.
   '(custom-safe-themes
      (quote
-       ("4e132458143b6bab453e812f03208075189deca7ad5954a4abb27d5afce10a9a" "e838d6375a73fda607820c65eb3ea1f9336be7bd9a5528c9161e10c4aa663b5b" "a6e3dec0d16222cc5747743c87ef7da79186f7282e2ec4ff74c7f08ed7fe28d2" "a8c210aa94c4eae642a34aaf1c5c0552855dfca2153fa6dd23f3031ce19453d4" "fe666e5ac37c2dfcf80074e88b9252c71a22b6f5d2f566df9a7aa4f9bea55ef8" default))))
+       ("7d56fb712ad356e2dacb43af7ec255c761a590e1182fe0537e1ec824b7897357" "f951343d4bbe5a90dba0f058de8317ca58a6822faa65d8463b0e751a07ec887c" "c8f959fb1ea32ddfc0f50db85fea2e7d86b72bb4d106803018be1c3566fd6c72" "4e132458143b6bab453e812f03208075189deca7ad5954a4abb27d5afce10a9a" "e838d6375a73fda607820c65eb3ea1f9336be7bd9a5528c9161e10c4aa663b5b" "a6e3dec0d16222cc5747743c87ef7da79186f7282e2ec4ff74c7f08ed7fe28d2" "a8c210aa94c4eae642a34aaf1c5c0552855dfca2153fa6dd23f3031ce19453d4" "fe666e5ac37c2dfcf80074e88b9252c71a22b6f5d2f566df9a7aa4f9bea55ef8" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

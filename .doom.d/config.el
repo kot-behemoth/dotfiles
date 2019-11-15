@@ -7,6 +7,9 @@
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 
+;; Fix PATH
+(add-to-list 'exec-path "/usr/local/bin")
+
 ;; Make gsSPC work in all windows
 (setq avy-all-windows t)
 (setq auto-window-vscroll nil)
@@ -46,6 +49,8 @@
 (after! evil-escape
   (setq evil-escape-key-sequence "ii"))
 
+;; no need for hard-wrapping in markdown
+(remove-hook 'markdown-mode-hook #'auto-fill-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modules
@@ -61,6 +66,8 @@
 (load! "+shell")
 (load! "+tramp")
 (load! "+cheatsheet")
+(load! "+cider")
+(load! "+clojure")
 
 (when IS-WINDOWS
   (load! "+work") ;; All work-related, Windows-specific stuff

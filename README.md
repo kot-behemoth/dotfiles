@@ -3,6 +3,7 @@
 ## Linking up the files
 
 ```bash
+ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.doom.d ~/.doom.d
 ln -s ~/dotfiles/.direnvrc ~/.direnvrc
 

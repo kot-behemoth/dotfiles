@@ -13,3 +13,7 @@
 (package! helm-org-rifle)
 (package! cheatsheet)
 (package! hercules)
+(package! flycheck-clj-kondo)
+
+; HACK
+;; (package! helm-easymenu :recipe (:fetcher github :repo "emacs-helm/helm"))

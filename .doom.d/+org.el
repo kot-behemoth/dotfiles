@@ -12,6 +12,7 @@
 (map!
   :localleader
   :map org-mode-map
+  "t" #'org-todo
   "C" #'ox-clip-formatted-copy
   "p" #'org-cliplink)
 
@@ -49,21 +50,27 @@
       (olivetti-mode 0)
       (olivetti-mode 1))))
 
-(map!
-  :map org-mode-map :desc "widen" :n "z w" #'widen
+(defun +org-init-keybinds-h ()
+  (map!
+    :map org-mode-map :desc "widen" :n "z w" #'widen
 
-  :after olivetti
-  :map text-mode-map
-  :localleader
-  :desc "Focus mode"
-  :n "F" #'toggle-focus-mode)
+    :after olivetti
+    :map text-mode-map
+    :localleader
+    :desc "Focus mode"
+    :n "F" #'toggle-focus-mode)
 
-(map!
-  :map org-mode-map
-  :localleader
+  (map!
+    :map org-mode-map
+    :localleader
 
-  :desc "org-refile"
-  :n "R" #'org-refile
+    :desc "org-refile"
+    :n "R" #'org-refile
 
-  :desc "org-rifle"
-  :n "r" #'helm-org-rifle-org-directory)
+    :desc "org-rifle"
+    :n "r" #'helm-org-rifle-org-directory))
+
+(add-hook! 'org-load-hook
+  #'+org-init-keybinds-h)
+
+(remove-hook 'org-mode-hook 'auto-fill-mode)
