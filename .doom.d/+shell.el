@@ -1,7 +1,8 @@
 ;;; +shell.el -*- lexical-binding: t; -*-
 
 ;; FIXME doesn't necessarily work on macos
-(shx-global-mode 1)  ; toggle shx-mode on globally
+;(shx-global-mode 1)  ; toggle shx-mode on globally
+(setq shell-file-name "/usr/local/bin/bash")
 
 ;; Fix EDITOR handling for shells
 (add-hook 'shell-mode-hook  'with-editor-export-editor)
@@ -20,3 +21,8 @@
   (:prefix "o"
    :desc "Shell toggle" "s"  #'+shell/toggle
    :desc "Shell here" "S"  #'+shell/here))
+
+(map!
+  (:map vterm-mode-map
+   :n "C-j" #'vterm-send-down
+   :n "C-k" #'vterm-send-up))

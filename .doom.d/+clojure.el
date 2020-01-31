@@ -1,5 +1,13 @@
 ;;; ~/dotfiles/.doom.d/+clojure.el -*- lexical-binding: t; -*-
 
+(map!
+  (:after cider
+   :map (cider-repl-mode)
+
+   "C-k" #'cider-repl-previous-input
+   "C-j" #'cider-repl-next-input
+   "C-l" #'cider-repl-history))
+
 (use-package! flycheck-clj-kondo
   :hook (clojure-mode . cider-mode)
   :after flycheck

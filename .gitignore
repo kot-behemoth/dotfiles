@@ -5,3 +5,5 @@ places
 elpa
 /.spacemacs.d/.cache
 flycheck_config.el
+/.rebel_readline_history
+/.clojure/.cpcache/

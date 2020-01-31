@@ -39,27 +39,7 @@
         ("m" "Review: Monthly Review" entry (file+olp+datetree "/tmp/reviews.org")
           (file "~/.doom.d/org-templates/monthly-review.org"))))
 
-;; Focus-mode writing
-(after! olivetti
-  (setq-default olivetti-body-width 80)
-
-  (defun toggle-focus-mode ()
-    (interactive)
-    (doom/window-maximize-buffer)
-    (if (bound-and-true-p olivetti-mode)
-      (olivetti-mode 0)
-      (olivetti-mode 1))))
-
 (defun +org-init-keybinds-h ()
-  (map!
-    :map org-mode-map :desc "widen" :n "z w" #'widen
-
-    :after olivetti
-    :map text-mode-map
-    :localleader
-    :desc "Focus mode"
-    :n "F" #'toggle-focus-mode)
-
   (map!
     :map org-mode-map
     :localleader

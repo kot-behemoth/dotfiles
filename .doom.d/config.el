@@ -2,7 +2,7 @@
 
 (setq doom-localleader-key ",")
 (setq doom-theme 'doom-molokai)
-(setq doom-font (font-spec :family "Fira Code" :size 16))
+(setq doom-font (font-spec :family "Essential PragmataPro" :size 16))
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
@@ -38,16 +38,24 @@
 
   (:desc "Kill ring" :n "K" #'helm-show-kill-ring)
 
-  (:prefix ("w" . "windows")
+  (:prefix "w"
    :desc "Other window" "w"  #'other-window)
 
-  (:prefix ("a" . "apps")
+  (:prefix "a"
    :desc "Prodigy" "p"  #'prodigy
    :desc "Deer"    "r"  #'deer
    :desc "Ranger"  "R"  #'ranger))
 
 (after! evil-escape
   (setq evil-escape-key-sequence "ii"))
+
+;; Fix exit sequence for `emacsclient' for Joplin external editing
+(add-hook 'server-switch-hook
+  (lambda ()
+    (when (current-local-map)
+      (use-local-map (copy-keymap (current-local-map))))
+    (when server-buffer-clients
+      (local-set-key (kbd "C-c k") 'server-edit))))
 
 ;; no need for hard-wrapping in markdown
 (remove-hook 'markdown-mode-hook #'auto-fill-mode)
@@ -66,7 +74,6 @@
 (load! "+shell")
 (load! "+tramp")
 (load! "+cheatsheet")
-(load! "+cider")
 (load! "+clojure")
 
 (when IS-WINDOWS

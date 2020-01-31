@@ -1,29 +1,24 @@
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-# use Homebrew's Python 3 as base python
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+PATH="/usr/local/bin:$PATH"
+PATH="/usr/local/sbin:$PATH"
 # add doom binary to the path
-export PATH="/Users/greg/.emacs.d/bin:$PATH"
-source "/usr/local/miniconda3/etc/profile.d/conda.sh"
-
-# set -o vi
-[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
-export PATH="/Users/greg/.composer/vendor/bin:$PATH"
-
+PATH="/Users/greg/.emacs.d/bin:$PATH"
+# Add pipx's binaries
+PATH="/Users/greg/.local/bin:$PATH"
 # add `envsubst` from `gettext` package
-export PATH="/usr/local/opt/gettext/bin:$PATH"
+PATH="/usr/local/opt/gettext/bin:$PATH"
+export PATH
+
+CDPATH=".:$CDPATH"
+CDPATH="/Users/greg/Documents/2-Areas:$CDPATH"
+CDPATH="/Users/greg/Dropbox:$CDPATH"
+export CDPATH
 
 ### Bash customisation
-force_color_prompt=yes
-alias ls='ls -lG'
 export PS1="[\w] > \[$(tput sgr0)\]"
+alias ls='ls -lG'
+export force_color_prompt=yes
 
-# Enable direnv
-# eval "$(direnv hook bash)"
+[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
@@ -34,3 +29,32 @@ export PS1="[\w] > \[$(tput sgr0)\]"
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
+
+# Load pyenv automatically by appending
+# the following to your profile:
+
+# Activate pyenv in the shell
+eval "$(pyenv init -)"
+# Activate/deactivate virtualenvs on entering/leaving directories which contain a .python-version
+
+if [ -n "$(which pyenv)" ]; then
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
+  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+fi
+
+# - direnv: https://direnv.net/
+if [ -n "$(which direnv)" ]; then
+  eval "$(direnv hook $(basename $SHELL))"
+  # export DIRENV_WARN_TIMEOUT=100s
+fi
+
+# Fancy REPL, from https://asciinema.org/a/296507
+function clj() {
+    if [[ -z $@ ]]
+    then
+        command clojure -A:repl
+    else
+        command clj $@
+    fi
+}
