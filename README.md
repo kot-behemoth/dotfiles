@@ -5,7 +5,8 @@
 ```bash
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.doom.d ~/.doom.d
-ln -s ~/dotfiles/.direnvrc ~/.direnvrc
+ln -s ~/dotfiles/direnvrc ~/.config/direnv/direnvrc && direnv allow
+ln -s ~/dotfiles/liquidpromptrc ~/.config/liquidpromptrc
 
 # legacy
 ln -s ~/dotfiles/.zshrc ~/.zshrc

@@ -20,7 +20,8 @@
   (popup            ; tame sudden yet inevitable temporary windows
     +all             ; catch all popups that start with an asterix
     +defaults)       ; default popup rules
-  ;;pretty-code       ; replace bits of code with pretty symbols
+  ;; (pretty-code       ; replace bits of code with pretty symbols
+  ;;   +iosevka)
   (workspaces        ; tab emulation, persistence & separate workspaces
     +switch-window)
   ;;tabbar            ; FIXME an (incomplete) tab bar for Emacs
@@ -63,7 +64,7 @@
 
   :tools
   ;;ansible
-  docker
+  (docker +lsp)
   direnv
   ;;editorconfig      ; let someone else argue about tabs vs spaces
   (lookup           ; helps you navigate your code and documentation
@@ -123,8 +124,8 @@
   ;;plantuml          ; diagrams for confusing people more
   ;;purescript        ; javascript, but functional
   (python
-                                        ;+conda
     +pyenv
+    +conda
     +lsp)             ; beautiful is better than ugly
   ;;qt                ; the 'cutest' gui framework ever
   ;;racket            ; a DSL for DSLs
@@ -135,7 +136,10 @@
   (sh +lsp)           ; she sells (ba|z|fi)sh shells on the C xor
   ;;solidity          ; do you need a blockchain? No.
   ;;swift             ; who asked for emoji variables?
-  (web +lsp)          ; the tubes
+  (web
+    +lsp
+    +css
+    +html)          ; the tubes
   ;;vala              ; GObjective-C
 
   ;; Applications are complex and opinionated modules that transform Emacs

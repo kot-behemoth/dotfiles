@@ -6,12 +6,22 @@ PATH="/Users/greg/.emacs.d/bin:$PATH"
 PATH="/Users/greg/.local/bin:$PATH"
 # add `envsubst` from `gettext` package
 PATH="/usr/local/opt/gettext/bin:$PATH"
+PATH="/usr/local/opt/postgresql@11/bin:$PATH"
 export PATH
+
+export LDFLAGS="-L/usr/local/opt/postgresql@11/lib"
+export CPPFLAGS="-I/usr/local/opt/postgresql@11/include"
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
 CDPATH=".:$CDPATH"
 CDPATH="/Users/greg/Documents/2-Areas:$CDPATH"
 CDPATH="/Users/greg/Dropbox:$CDPATH"
 export CDPATH
+
+eval "$(ssh-agent -s)" > /dev/null
 
 ### Bash customisation
 export PS1="[\w] > \[$(tput sgr0)\]"
@@ -30,25 +40,6 @@ export force_color_prompt=yes
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
 
-# Load pyenv automatically by appending
-# the following to your profile:
-
-# Activate pyenv in the shell
-eval "$(pyenv init -)"
-# Activate/deactivate virtualenvs on entering/leaving directories which contain a .python-version
-
-if [ -n "$(which pyenv)" ]; then
-  eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
-  export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-fi
-
-# - direnv: https://direnv.net/
-if [ -n "$(which direnv)" ]; then
-  eval "$(direnv hook $(basename $SHELL))"
-  # export DIRENV_WARN_TIMEOUT=100s
-fi
-
 # Fancy REPL, from https://asciinema.org/a/296507
 function clj() {
     if [[ -z $@ ]]
@@ -58,3 +49,39 @@ function clj() {
         command clj $@
     fi
 }
+
+# Disable conda for now, as we're using virtualenv
+# . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+# export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+# conda activate base
+
+# pyenv
+if which pyenv-init > /dev/null; then eval "$(pyenv init -)"; fi
+
+# liquidprompt prompt customisation
+# if [ -f /usr/local/share/liquidprompt ]; then
+#   . /usr/local/share/liquidprompt
+# fi
+
+# # >>> conda initialize >>>
+# # !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+#         . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# # <<< conda initialize <<<
+
+
+# - direnv: https://direnv.net/
+# NOTE: must come at the bottom
+if [ -n "$(which direnv)" ]; then
+  eval "$(direnv hook $(basename $SHELL))"
+  # export DIRENV_WARN_TIMEOUT=100s
+fi

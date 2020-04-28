@@ -9,11 +9,12 @@
 (package! shx)
 (package! org-cliplink)
 (package! ox-clip)
-(package! olivetti)
 (package! helm-org-rifle)
 (package! cheatsheet)
 (package! hercules)
-(package! flycheck-clj-kondo)
+
+;(package! vuiet)
+(package! lastfm)
 
 ; HACK
 ;; (package! helm-easymenu :recipe (:fetcher github :repo "emacs-helm/helm"))
