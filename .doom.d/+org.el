@@ -1,7 +1,7 @@
 ;;; ~/dotfiles/.doom.d/+org.el -*- lexical-binding: t; -*-
 
 ;; Org-mode customisations
-(add-hook 'org-mode-hook (lambda! (display-line-numbers-mode 0)))
+(add-hook 'org-mode-hook (cmd! (display-line-numbers-mode 0)))
 
 (after! org
   (setq-default
@@ -24,8 +24,7 @@
   '(("1 Projects.org" :maxlevel . 1)
     ("2 Areas.org" :maxlevel . 1)
     ("3 Resources.org" :maxlevel . 1)
-    ("inbox.org" :maxlevel . 1)
-    ("people.org" :maxlevel . 1)))
+    ("inbox.org" :maxlevel . 1)))
 
 (setq org-capture-templates
       '(("t" "Task" entry (file "~/org/inbox.org"))
@@ -53,4 +52,21 @@
 (add-hook! 'org-load-hook
   #'+org-init-keybinds-h)
 
-(remove-hook 'org-mode-hook 'auto-fill-mode)
+;; Org-roam customisations
+(after! org-roam
+  (setq org-roam-directory "~/Dropbox/org/org-roam"))
+        ;; org-roam-graph-viewer "open -a /Applications/Firefox.app -new-tab"))
+
+(after! deft
+  (setq
+    deft-recursive t
+    deft-use-filter-string-for-filename t
+    deft-default-extension "org"
+    deft-directory "~/Dropbox/org/org-roam"))
+
+;; Org-journal customisations
+(setq
+  org-journal-dir "~/Dropbox/org/org-roam"
+  org-journal-date-prefix "#+title: "
+  org-journal-file-format "%Y-%m-%d.org"
+  org-journal-date-format "%A, %d %B %Y")

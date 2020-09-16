@@ -1,3 +1,5 @@
+# ; -*- mode: sh -*-
+
 # From https://github.com/direnv/direnv/wiki/Docker-Machine
 use_docker-machine() {
   local env=${1:-default}

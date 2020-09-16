@@ -16,29 +16,29 @@ export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 
 export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
-CDPATH=".:$CDPATH"
-CDPATH="/Users/greg/Documents/2-Areas:$CDPATH"
-CDPATH="/Users/greg/Dropbox:$CDPATH"
-export CDPATH
-
 eval "$(ssh-agent -s)" > /dev/null
 
 ### Bash customisation
-export PS1="[\w] > \[$(tput sgr0)\]"
+if [ -z "$INSIDE_EMACS" ]
+then
+      : # noop, outside of emacs
+else
+      # outside of emacs
+      PS1="[\w] > \[$(tput sgr0)\]"
+      export PS1
+fi
+
 alias ls='ls -lG'
 export force_color_prompt=yes
 
+alias python=/usr/local/opt/python/libexec/bin/python
+
+## Bash completions
+##
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
 
 # Fancy REPL, from https://asciinema.org/a/296507
 function clj() {
@@ -50,34 +50,15 @@ function clj() {
     fi
 }
 
-# Disable conda for now, as we're using virtualenv
-# . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-# export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-# conda activate base
-
 # pyenv
 if which pyenv-init > /dev/null; then eval "$(pyenv init -)"; fi
 
+# Only load in interactive shells
+# [[ $- = *i* ]] && source ~/liquidprompt/liquidprompt
 # liquidprompt prompt customisation
-# if [ -f /usr/local/share/liquidprompt ]; then
-#   . /usr/local/share/liquidprompt
-# fi
-
-# # >>> conda initialize >>>
-# # !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     eval "$__conda_setup"
-# else
-#     if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
-#         . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
-#     else
-#         export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# # <<< conda initialize <<<
-
+if [ -f /usr/local/share/liquidprompt ]; then
+  . /usr/local/share/liquidprompt
+fi
 
 # - direnv: https://direnv.net/
 # NOTE: must come at the bottom

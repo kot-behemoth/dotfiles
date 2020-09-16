@@ -7,10 +7,11 @@
   helm              ; the *other* search engine for love and life
 
   :ui
+  deft              ; notational velocity for Emacs
   doom              ; what makes DOOM look the way it does
   doom-dashboard    ; a nifty splash screen for Emacs
   doom-quit         ; DOOM quit-message prompts when you quit Emacs
-  hl-todo           ; highlight TODO/FIXME/NOTE tags
+  hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
   hydra
   modeline          ; snazzy, Atom-inspired modeline, plus API
   nav-flash         ; blink the current line after jumping
@@ -49,12 +50,13 @@
   electric          ; smarter, keyword-based electric-indent
   (ibuffer           ; interactive buffer management
     +icons)
+  undo              ; persistent, smarter undo for your inevitable mistakes
   vc                ; version-control and Emacs, sitting in a tree
 
   :term
   eshell            ; a consistent, cross-platform shell (WIP)
   shell             ; a terminal REPL for Emacs
-  ;;term              ; terminals in Emacs
+  ;; term              ; terminals in Emacs
   vterm             ; another terminals in Emacs
 
   :checkers
@@ -72,7 +74,7 @@
   (eval +overlay)    ; run code, run (also, repls)
                                         ;ein               ; tame Jupyter notebooks with emacs
   ;;gist              ; interacting with github gists
-  lsp
+  (lsp +peek)
   macos             ; MacOS-specific commands
   make              ; run make tasks from Emacs
   magit             ; a git porcelain for Emacs
@@ -80,10 +82,10 @@
   ;;pdf               ; pdf enhancements
   prodigy           ; FIXME managing external services & code builders
   ;;rgb               ; creating color strings
+  taskrunner        ; taskrunner for all your projects
   ;;terraform         ; infrastructure as code
   tmux              ; an API for interacting with tmux
   upload            ; map local to remote projects via ssh/ftp
-  ;;wakatime
 
   :lang
   ;;assembly          ; assembly for fun or debugging
@@ -115,10 +117,9 @@
   ;;ocaml             ; an objective camel
   (org
     +dragndrop       ; file drag & drop support
-    +ipython         ; ipython support for babel
+    +roam
+    +journal
     +pandoc)          ; pandoc integration into org's exporter
-                                        ;+present)        ; using Emacs for presentations
-
   ;;perl              ; write code no one else can comprehend
   ;;php               ; perl's insecure younger brother
   ;;plantuml          ; diagrams for confusing people more
@@ -141,17 +142,21 @@
     +css
     +html)          ; the tubes
   ;;vala              ; GObjective-C
+  yaml              ; JSON, but readable
+
+  :email
+  ;;(mu4e +gmail)
+  ;;notmuch
+  ;;(wanderlust +gmail)
 
   ;; Applications are complex and opinionated modules that transform Emacs
   ;; toward a specific purpose. They may have additional dependencies and
   ;; should be loaded late.
   :app
-  ;;(email +gmail)    ; emacs as an email client
+  ;;calendar
   ;;irc               ; how neckbeards socialize
   ;;(rss +org)        ; emacs as an RSS reader
   ;;twitter           ; twitter client https://twitter.com/vnoughk
-
-  :collab
 
   :collab
   ;;floobits          ; peer programming for a price

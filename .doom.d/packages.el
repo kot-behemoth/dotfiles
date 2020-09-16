@@ -15,6 +15,7 @@
 
 ;(package! vuiet)
 (package! lastfm)
+(package! wsd-mode)
 
 ; HACK
 ;; (package! helm-easymenu :recipe (:fetcher github :repo "emacs-helm/helm"))
