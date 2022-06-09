@@ -19,3 +19,6 @@
 
 ; HACK
 ;; (package! helm-easymenu :recipe (:fetcher github :repo "emacs-helm/helm"))
+
+;; Fix for CIDER map issue: https://github.com/hlissner/doom-emacs/issues/5537
+(package! map :pin "bb50dbaafc0f71743bd9ffd5784258a9fd682c20")

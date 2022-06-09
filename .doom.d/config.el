@@ -1,7 +1,7 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 (setq doom-localleader-key ",")
-(setq doom-theme 'doom-nord-light)
+(setq doom-theme 'doom-one-light)
 ;; (setq doom-font (font-spec :family "Essential PragmataPro" :size 16))
 (setq doom-font (font-spec :family "Iosevka Term SS08" :size 16))
 
@@ -26,26 +26,28 @@
 
   ;; Add easy way to find
   (:map override
-   "M-f" #'swiper-helm)  ;; can also be called via SPC / b
+    "M-f" #'swiper-helm)  ;; can also be called via SPC / b
 
   (:after helm-files
-   :map (helm-find-files-map helm-read-file-map)
-   "C-l"      #'helm-execute-persistent-action
-   "C-h"      #'helm-find-files-up-one-level)
+    :map (helm-find-files-map helm-read-file-map)
+    "C-l"      #'helm-execute-persistent-action
+    "C-h"      #'helm-find-files-up-one-level)
 
   :leader
   (:desc "toggle" :prefix "t"
-   :desc "Line wrap" :n "l" #'toggle-truncate-lines)
+    :desc "Line wrap" :n "l" #'toggle-truncate-lines)
 
   (:desc "Kill ring" :n "K" #'helm-show-kill-ring)
 
   (:prefix "w"
-   :desc "Other window" "w"  #'other-window)
+    :desc "Other window" "w"  #'other-window))
 
-  (:prefix "a"
-   :desc "Prodigy" "p"  #'prodigy
-   :desc "Deer"    "r"  #'deer
-   :desc "Ranger"  "R"  #'ranger))
+;; worked before, but now complains with
+;; error Key sequence a r starts with non-prefix key a
+;; (:prefix "a"
+;; :desc "Prodigy" "p"  #'prodigy
+;; :desc "Deer"    "r"  #'deer
+;; :desc "Ranger"  "R"  #'ranger))
 
 (after! evil-escape
   (setq evil-escape-key-sequence "ii"))
@@ -60,6 +62,10 @@
 
 ;; no need for hard-wrapping in markdown
 (remove-hook 'markdown-mode-hook #'auto-fill-mode)
+
+;; Fixes :completion vertico complaining about grep not built with support for PCRE lookaheads
+(after! consult
+  (setq consult-grep-args (concat "g" consult-grep-args)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Modules
@@ -118,9 +124,8 @@
        (cons 340 "#62686E")
        (cons 360 "#62686E")))
  '(vc-annotate-very-old-color nil))
-(custom-set-faces
+(custom-set-faces)
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )

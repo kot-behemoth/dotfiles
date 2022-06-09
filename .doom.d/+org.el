@@ -54,19 +54,18 @@
 
 ;; Org-roam customisations
 (after! org-roam
-  (setq org-roam-directory "~/Dropbox/org/org-roam"))
-        ;; org-roam-graph-viewer "open -a /Applications/Firefox.app -new-tab"))
+  (setq org-roam-directory "~/Dropbox/org/org-roam-v2"))
 
 (after! deft
   (setq
     deft-recursive t
     deft-use-filter-string-for-filename t
     deft-default-extension "org"
-    deft-directory "~/Dropbox/org/org-roam"))
+    deft-directory "~/Dropbox/org/org-roam-v2"))
 
 ;; Org-journal customisations
 (setq
-  org-journal-dir "~/Dropbox/org/org-roam"
+  org-journal-dir "~/Dropbox/org/org-roam-v2"
   org-journal-date-prefix "#+title: "
   org-journal-file-format "%Y-%m-%d.org"
   org-journal-date-format "%A, %d %B %Y")

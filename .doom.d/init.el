@@ -2,17 +2,23 @@
 ;;
 ;; ~/.doom.d/init.el file is loaded before any modules are!
 
-(doom! :completion
+(doom!
+  :completion
   company           ; the ultimate code completion backend
-  helm              ; the *other* search engine for love and life
+  ;;helm              ; the *other* search engine for love and life
+  (vertico           ; the search engine of the future
+   +icons)
 
   :ui
   deft              ; notational velocity for Emacs
   doom              ; what makes DOOM look the way it does
   doom-dashboard    ; a nifty splash screen for Emacs
   doom-quit         ; DOOM quit-message prompts when you quit Emacs
+  fill-column       ; a `fill-column' indicator
   hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
   hydra
+  indent-guides     ; highlighted indent columns
+  ;;ligatures         ; ligatures and symbols to make your code pretty again
   modeline          ; snazzy, Atom-inspired modeline, plus API
   nav-flash         ; blink the current line after jumping
   ;;neotree           ; a project drawer, like NERDTree for vim
@@ -21,8 +27,6 @@
   (popup            ; tame sudden yet inevitable temporary windows
     +all             ; catch all popups that start with an asterix
     +defaults)       ; default popup rules
-  ;; (pretty-code       ; replace bits of code with pretty symbols
-  ;;   +iosevka)
   (workspaces        ; tab emulation, persistence & separate workspaces
     +switch-window)
   ;;tabbar            ; FIXME an (incomplete) tab bar for Emacs
@@ -39,7 +43,8 @@
   ;;(format +onsave)  ; automated prettiness
   ;;lispy             ; vim for lisp, for people who dont like vim
   ;;multiple-cursors  ; editing in many places at once
-  parinfer          ; turn lisp into python, sort of
+  (parinfer          ; turn lisp into python, sort of
+    +rust)
   ;;rotate-text       ; cycle region at point between text candidates
   word-wrap           ; soft wrapping with language-aware indent
 
@@ -75,7 +80,6 @@
                                         ;ein               ; tame Jupyter notebooks with emacs
   ;;gist              ; interacting with github gists
   (lsp +peek)
-  macos             ; MacOS-specific commands
   make              ; run make tasks from Emacs
   magit             ; a git porcelain for Emacs
   ;;password-store    ; password manager for nerds
@@ -83,14 +87,18 @@
   prodigy           ; FIXME managing external services & code builders
   ;;rgb               ; creating color strings
   taskrunner        ; taskrunner for all your projects
-  ;;terraform         ; infrastructure as code
+  terraform         ; infrastructure as code
   tmux              ; an API for interacting with tmux
   upload            ; map local to remote projects via ssh/ftp
+
+  :os
+  (:if IS-MAC macos)  ; improve compatibility with macOS
 
   :lang
   ;;assembly          ; assembly for fun or debugging
   ;;(cc +irony +rtags); C/C++/Obj-C madness
-  clojure           ; java with a lisp
+  (clojure)
+    ;; +lsp)           ; java with a lisp
   ;;common-lisp       ; if you've seen one lisp, you've seen them all
   ;;coq               ; proofs-as-programs
   ;;crystal           ; ruby at the speed of c
@@ -105,6 +113,7 @@
   ;;(haskell +intero) ; a language that's lazier than I am
   ;;hy                ; readability of scheme w/ speed of python
   ;;idris             ;
+  json              ; At least it ain't XML
   ;;(java +meghanada) ; the poster child for carpal tunnel syndrome
   javascript        ; all(hope(abandon(ye(who(enter(here))))))
   ;;julia             ; a better, faster MATLAB
@@ -117,8 +126,7 @@
   ;;ocaml             ; an objective camel
   (org
     +dragndrop       ; file drag & drop support
-    +roam
-    +journal
+    +roam2
     +pandoc)          ; pandoc integration into org's exporter
   ;;perl              ; write code no one else can comprehend
   ;;php               ; perl's insecure younger brother
@@ -145,7 +153,7 @@
   yaml              ; JSON, but readable
 
   :email
-  ;;(mu4e +gmail)
+  (mu4e +org +gmail)
   ;;notmuch
   ;;(wanderlust +gmail)
 
@@ -153,6 +161,7 @@
   ;; toward a specific purpose. They may have additional dependencies and
   ;; should be loaded late.
   :app
+  everywhere
   ;;calendar
   ;;irc               ; how neckbeards socialize
   ;;(rss +org)        ; emacs as an RSS reader
@@ -206,9 +215,8 @@
        (cons 340 "#62686E")
        (cons 360 "#62686E")))
  '(vc-annotate-very-old-color nil))
-(custom-set-faces
+(custom-set-faces)
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )

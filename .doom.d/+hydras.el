@@ -52,10 +52,10 @@
     P.A.R.A. control panel (_q_uit)
     ^Notes^             ^Storage^
     ^-----^-------------^--^---------
-      _t_ Tasks          _s_ Dropbox
-      _p_ Projects       _S_ Dropbox, dired
-      _a_ Areas          _l_ Local
-      _r_ Resources      _L_ Local, dired
+      _t_ Tasks          _l_ logseq
+      _p_ Projects       _L_ Local, dired
+      _a_ Areas
+      _r_ Resources
       _A_ Archives
     "
 
@@ -65,9 +65,9 @@
     ("r" (find-file "~/Dropbox/org/3 Resources.org"))
     ("A" (find-file "~/Dropbox/org/4 Archives.org"))
 
-    ("s" (+macos/reveal-in-finder "~/Dropbox"))
-    ("S" (ranger "~/Documents"))
-    ("l" (+macos/reveal-in-finder "~/Documents"))
+    ("l" (progn
+           (setq deft-directory "/Users/greg/Dropbox/logseq-company-watch-converted")
+           (deft)))
     ("L" (ranger "~/Documents"))
 
     ("q" nil))
