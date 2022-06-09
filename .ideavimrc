@@ -1,11 +1,33 @@
-" Integrate with system clipboard
-set clipboard=unnamedplus,unnamed
+" see this for main inspiration
+"   https://gist.github.com/dewaka/ef947e52767bf453eaf77c852051eb7e
+"   https://github.com/Valloric/dotfiles/blob/master/intellij/ideavimrc
+
+set ignorecase
+set smartcase
+set scrolloff=3 " 3 lines above/below cursor when scrolling
+
+" Emulated Plugins
+set surround
+
+" Copy to system clipboard as well
+set clipboard+=unnamed
+
+" Use Idea to join lines smartly
+set ideajoin
 
 let mapleader = ","
 
 " remap escape
 imap ii <Esc>
 set timeoutlen=1000
+
+" Use Q for formatting the current paragraph (or visual selection)
+vmap Q gq
+nmap Q gqap
+
+" These create newlines like o and O but stay in normal mode
+nmap zj o<Esc>k
+nmap zk O<Esc>j
 
 " key bindings for quickly moving between windows
 " h left, l right, k up, j down
@@ -14,13 +36,88 @@ nmap <leader>l <c-w>l
 nmap <leader>k <c-w>k
 nmap <leader>j <c-w>j
 
+" Tabs management
+nmap <leader>q :action CloseContent<cr>
+nmap <leader>Q :action ReopenClosedTab<cr>
+nmap <a-h> :action VimMotionPreviousTab<CR>
+nmap <a-l> :action VimMotionNextTab<CR>
+
+" To navigate between split panes
+nmap <leader>wo :action NextSplitter<cr>
+nmap <leader>wp :action PrevSplitter<cr>
+nmap <leader>j :action PrevSplitter<cr>
+
+" Splits manipulation
+nmap <leader>ws :action SplitHorizontally<cr>
+nmap <leader>wv :action SplitVertically<cr>
+nmap <leader>wc :action Unsplit<cr>
+nmap <leader>wC :action UnsplitAll<cr>
+nmap <leader>wd :action OpenEditorInOppositeTabGroup<cr>
+nmap <leader><leader> :action VimFilePrevious<cr>
+" nmap <leader>ww :action JumpToLastWindow<cr>
+
+" CLOJURE SPECIFIC MAPPINGS FOR CURSIVE
+nmap <leader>ee :action :cursive.repl.actions/run-top-sexp<cr>
+
+nmap <leader>rc :action :cursive.repl.actions/clear-repl<cr>
+nmap <leader>rb :action :cursive.repl.actions/load-file<cr>
+nmap <leader>ro :action :cursive.repl.actions/jump-to-output<cr>
+nmap <leader>rr :action :cursive.repl.actions/jump-to-repl<cr>
+nmap <leader>rg :action :cursive.repl.actions/clojure-repl-commands-group<cr>
+nmap <leader>rG :action :cursive.repl.actions/clojure-repl-group<cr>
+nmap <leader>rn :action :cursive.repl.actions/switch-namespace<cr>
+
+nmap <leader>nt :action :cursive.testing.actions/run-ns-tests<cr>
+" nmap <leader>T :action :cursive.testing.actions/rerun-last-test<cr>
+" nmap <leader>C :action :cursive.testing.actions/remove-test-markers<cr>
+
+" PYTHON SPECIFIC MAPPINGS
+" Format code with Black fomatter
+nmap \p :action Tool_External Tools_Black<cr>
 " - go to console window, ,c
 nmap <leader>c :action ActivatePythonConsoleToolWindow<CR>
 " - visual mode - send to console, ,e
 vmap <leader>e :action ExecuteInPyConsoleAction<CR>
 
-" go to All
-nmap <leader>g :action GoToMenu<CR>
+" Navigation
+"nmap <leader>h :action Back<cr>
+"nmap <leader>l :action Forward<cr>
+nmap <leader>L :action RecentLocations<cr>
+nmap <leader>g :action GotoDeclaration<cr>
+nmap <leader>u :action FindUsages<cr>
+nmap <leader>f :action GotoFile<cr>
+" nmap <leader>c :action GotoClass<cr>
+nmap <leader>s :action GotoSymbol<cr>
+" nmap <leader>m :action FileStructurePopup<cr>
+nmap <leader>; :action FileStructurePopup<cr>
+" nmap <leader>M :action ActivateStructureToolWindow<cr>
+nmap <leader>d :action ShowErrorDescription<cr>
+nmap <leader>i :action GotoImplementation<cr>
+nmap <leader>I :action SelectIn<cr>
+" nmap <leader>e :action RecentFiles<cr>
+nmap <leader>t :action GotoTest<cr>
+nmap <leader>p :action JumpToLastWindow<cr>
+nmap <leader>b :action ShowBookmarks<cr>
 
-nmap <a-h> :action VimMotionPreviousTab<CR>
-nmap <a-l> :action VimMotionNextTab<CR>
+nmap <leader>a :action Switcher<cr>
+" nmap <leader>a :action RecentChangedFiles<cr>
+
+" Errors
+nmap <leader>x :action GotoNextError<cr>
+nmap <leader>X :action GotoPreviousError<cr>
+
+" Refactorings
+vmap T :action Refactorings.QuickListPopupAction<cr>
+nmap <leader>rr :action RenameElement<cr>
+nmap <leader>rg :action Generate<cr>
+nmap <leader>rI :action OptimizeImports<cr>
+
+" Inspection
+nmap <leader>rc :action InspectCode<cr>
+
+" Terminal
+nmap <leader>T :action ActivateTerminalToolWindow<cr>  
+
+" Search
+nmap <leader>/ :action Find<cr>
+
