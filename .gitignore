@@ -7,3 +7,4 @@ elpa
 flycheck_config.el
 /.rebel_readline_history
 /.clojure/.cpcache/
+.direnv/python*
